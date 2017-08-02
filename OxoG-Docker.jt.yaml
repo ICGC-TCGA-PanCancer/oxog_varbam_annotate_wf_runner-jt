@@ -1,0 +1,103 @@
+workflow:
+  name:  oxog-docker
+  version: "0.1.0"
+  source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
+
+  runtime:
+    docker: null
+
+  execution:
+    constraint: same_host
+    memory: 4g
+    cpu: 2
+
+  input:
+    vcfdir:
+      path:
+        type: string
+      class:
+        type: string
+    refFile:
+      path:
+        type: string
+      class:
+        type: string
+    normalBam:
+      path:
+        type: string
+      class:
+        type: string
+    oxoQScore:
+      type: string
+    out_dir:
+      type: string
+    snv-padding:
+      type: string
+    sv-padding:
+      type: string
+    indel-padding:
+      type: string
+    minibamName:
+      type: string
+    inputFileDirectory:
+      class:
+        type: string
+      path:
+        type: string
+      location:
+        type: string
+    refDataDir:
+      class:
+        type: string
+      path:
+        type: string
+      location:
+        type: string
+    tumors:
+      type: array
+      items:
+        type: object
+        properties:
+          tumorId:
+            type: string
+          bamFileName:
+            type: string
+          associatedVcfs:
+            type: array
+            items:
+              type: string
+
+
+  output: null
+
+  tasks:
+    bamDownload:
+      tool: download
+      input:
+        donor:
+        object_id:
+
+    parallel_download:
+      scatter:
+        input:
+          vcfs:
+            with_items: tumors
+            task_suffix: vcf.vcf_id
+      tasks:
+        vcfDownload:
+          tool: download
+          input:
+            vcflist: associatedVcfs
+
+
+
+tools:
+  download:
+    command: download.py
+      input:
+        donor:
+          type: string
+        vcflist:
+          type: string
+        object_id:
+          type: string
