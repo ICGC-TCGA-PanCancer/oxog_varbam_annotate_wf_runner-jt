@@ -54,28 +54,28 @@ workflow:
   output: null
 
   tasks:
-    bamDownload:
+
+    ref_download:
+      tool: ref_download
+      input:
+
+    Download:
       tool: download
       input:
         donor:
         normal_id:
         tumor_id:
+        associatedVcfs:
 
-    parallel_download:
-      scatter:
-        input:
-          vcfs:
-            with_items: tumors
-            task_suffix: vcf.vcf_id
-      tasks:
-        vcfDownload:
-          tool: download
-          input:
-            vcflist: associatedVcfs
+
     run_workflow:
       tool: run_workflow
       input:
         json:
+      depends_on:
+      - completed@vcfDownload
+      - completed@ref_download
+      - completed@bamDownload
 
 
 tools:

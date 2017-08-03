@@ -21,11 +21,15 @@ cwd = os.getcwd()
         type: string
       tumor_id:
         type: string
+      associatedVcfs:
+        type: array
 """
 donor = task_dict.get('input').get('donor')
 vcflist = task_dict.get('input').get('vcflist')
 object_id = task_dict.get('input').get('object_id')
 tumor_id = task_dict.get('input').get('tumor_id')
+vcf = json.loads(task_dict.get('input').get('associatedVcfs'))
+
 
 task_start = int(time.time())
 
@@ -33,6 +37,9 @@ try:
     os.mkdir(donor)
     r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', object_id, '--out-dir', donor])
     f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', tumor_id, '--out-dir', donor])
+    for i in vcf:
+        #get object ID
+        k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', tumor_id, '--out-dir', donor])
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
     sys.exit(1)  # task failed
