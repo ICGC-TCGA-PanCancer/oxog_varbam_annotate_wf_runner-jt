@@ -1,0 +1,36 @@
+{
+    "json": "path to this file"
+    "vcfdir": "",
+    "refFile": "Homo_sapiens_assembly19.fasta",
+    "donor": "DO52739",
+    "normalBam": "bam",
+    "tumours":
+    [
+        {
+            "tumourId": "",
+            "bamFileName": "bam",
+            "associatedVcfs":
+            [
+                "vcfs"
+            ]
+        }
+        ,
+        {
+            "tumourId": "",
+            "bamFileName": "bam",
+            "associatedVcfs":
+            [
+                "vcfs"
+            ]
+        }
+    ],
+    "oxoQScore": "1",
+    "out_dir": "/var/spool/cwl/",
+    "snv-padding": "200",
+    "sv-padding": "10",
+    "indel-padding": "205",
+    "minibamName": "minibam.bam",
+    "inputFileDirectory": "",
+    "refDataDir": "oxog_refdata"
+
+}

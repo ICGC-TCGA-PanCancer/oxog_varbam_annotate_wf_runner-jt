@@ -12,15 +12,14 @@ workflow:
     cpu: 2
 
   input:
+    json:  #path to self
+      type: string
     vcfdir:
-      path:
-        type: string
+      type: string
     refFile:
-      path:
-        type: string
+      type: string
     normalBam:
-      path:
-        type: string
+      type: string
     oxoQScore:
       type: string
     out_dir:
@@ -34,17 +33,9 @@ workflow:
     minibamName:
       type: string
     inputFileDirectory:
-      path:
-        type: string
-      location:
-        type: string
+      type: string
     refDataDir:
-      class:
-        type: string
-      path:
-        type: string
-      location:
-        type: string
+      type: string
     tumors:
       type: array
       items:
@@ -81,7 +72,10 @@ workflow:
           tool: download
           input:
             vcflist: associatedVcfs
-
+    run_workflow:
+      tool: run_workflow
+      input:
+        json:
 
 
 tools:
@@ -98,3 +92,4 @@ tools:
   run_workflow:
     command: call_oxog.py
       input:
+        json:
