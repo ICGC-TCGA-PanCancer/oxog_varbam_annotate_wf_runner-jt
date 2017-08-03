@@ -15,17 +15,11 @@ workflow:
     vcfdir:
       path:
         type: string
-      class:
-        type: string
     refFile:
       path:
         type: string
-      class:
-        type: string
     normalBam:
       path:
-        type: string
-      class:
         type: string
     oxoQScore:
       type: string
@@ -40,8 +34,6 @@ workflow:
     minibamName:
       type: string
     inputFileDirectory:
-      class:
-        type: string
       path:
         type: string
       location:
@@ -75,7 +67,8 @@ workflow:
       tool: download
       input:
         donor:
-        object_id:
+        normal_id:
+        tumor_id:
 
     parallel_download:
       scatter:
@@ -101,3 +94,7 @@ tools:
           type: string
         object_id:
           type: string
+
+  run_workflow:
+    command: call_oxog.py
+      input:
