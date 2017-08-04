@@ -1,5 +1,5 @@
 workflow:
-  name:  oxog-docker
+  name:  oxog-dockstore
   version: "0.1.0"
   source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
 
