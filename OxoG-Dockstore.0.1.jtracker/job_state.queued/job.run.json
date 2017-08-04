@@ -29,5 +29,5 @@
     "snv-padding": "200",
     "sv-padding": "10",
     "indel-padding": "205",
-    "minibamName": "minibam.bam",
+    "minibamName": "minibam.bam"
 }
