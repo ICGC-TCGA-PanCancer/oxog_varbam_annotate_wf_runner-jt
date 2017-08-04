@@ -54,10 +54,11 @@ workflow:
   output: null
 
   tasks:
-
-    ref_download:
-      tool: ref_download
-      input:
+    #
+    # ref_download:
+    #   tool: ref_download
+    #   input:
+    #     refFile: refFile
 
     Download:
       tool: download
