@@ -82,15 +82,15 @@ workflow:
 tools:
   download:
     command: download.py
-      input:
-        donor:
-          type: string
-        vcflist:
-          type: string
-        tumor_id:
-          type: string
-        object_id:
-          type: string
+    input:
+      donor:
+        type: string
+      vcflist:
+        type: string
+      tumor_id:
+        type: string
+      object_id:
+        type: string
 
   # run_workflow:
   #   command: call_oxog.py
