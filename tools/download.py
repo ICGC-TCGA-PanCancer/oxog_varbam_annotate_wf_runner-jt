@@ -28,7 +28,7 @@ donor = task_dict.get('input').get('donor')
 #vcflist = task_dict.get('input').get('vcflist')
 object_id = task_dict.get('input').get('object_id')
 tumor_id = task_dict.get('input').get('tumor_id')
-vcf = json.loads(task_dict.get('input').get('vcflist'))
+vcf = task_dict.get('input').get('vcflist')
 
 #temp hard code (obj ids may not line up correctly just for test)
 objid = {'6a40a6df68474d9357bacc988ea3e30e.bam':'0a84c77a-510c-5d5e-904b-723464025c76',
