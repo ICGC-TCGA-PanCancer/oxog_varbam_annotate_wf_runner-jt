@@ -1,6 +1,6 @@
 workflow:
   name:  OxoG-Dockstore
-  version: "0.1.22"
+  version: "0.1.23"
   source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
 
   runtime:
@@ -52,10 +52,10 @@ workflow:
 
   tasks:
     #
-    # ref_download:
-    #   tool: ref_download
-    #   input:
-    #     refFile: refFile
+    ref_download:
+      tool: ref_download
+      input:
+        refFile: refFile
 
     parallel_download:
       scatter:
