@@ -1,6 +1,6 @@
 workflow:
   name:  OxoG-Dockstore
-  version: "0.1.20"
+  version: "0.1.21"
   source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
 
   runtime:
@@ -74,7 +74,7 @@ workflow:
             normal_id: normalBam
             tumour_id: tumour_list.tumourBam
             vcflist: tumour_list.associatedVcfs
-          depends_on:null
+          depends_on: null
 
     #
     # run_workflow:
