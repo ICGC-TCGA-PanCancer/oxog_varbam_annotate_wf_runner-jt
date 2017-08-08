@@ -1,6 +1,6 @@
 workflow:
   name:  OxoG-Dockstore
-  version: "0.1.21"
+  version: "0.1.22"
   source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
 
   runtime:
@@ -47,9 +47,6 @@ workflow:
             type: string
           associatedVcfs:
             type: array
-            items:
-              type: string
-
 
   output: null
 
