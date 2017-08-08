@@ -1,0 +1,15 @@
+{
+  "task": "Download", 
+  "depends_on": null, 
+  "tool": "download", 
+  "command": "download.py", 
+  "input": {
+    "donor": "DO52739", 
+    "normal_id": "DO52739/6a40a6df68474d9357bacc988ea3e30e.bam", 
+    "vcflist": null, 
+    "tumor_id": null
+  }, 
+  "runtime": {
+    "docker": null
+  }
+}
