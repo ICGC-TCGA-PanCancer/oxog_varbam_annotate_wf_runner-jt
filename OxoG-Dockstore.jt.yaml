@@ -1,6 +1,6 @@
 workflow:
   name:  OxoG-Dockstore
-  version: "0.1.23"
+  version: "0.1.25"
   source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
 
   runtime:
@@ -18,6 +18,8 @@ workflow:
       type: string
     refFile:
       type: string
+    donor:
+      type: string
     normalBam:
       type: string
     oxoQScore:
@@ -31,10 +33,6 @@ workflow:
     indel-padding:
       type: string
     minibamName:
-      type: string
-    inputFileDirectory:
-      type: string
-    refDataDir:
       type: string
     tumours:
       type: array
