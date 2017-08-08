@@ -1,6 +1,6 @@
 workflow:
   name:  OxoG-Dockstore
-  version: "0.1.18"
+  version: "0.1.19"
   source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
 
   runtime:
@@ -63,17 +63,17 @@ workflow:
     parallel_download:
       scatter:
         input:
-          tumours:
+          tumour_list:
             with_items: tumours
-            task_suffix:
+            task_suffix: tumour_list.associatedVcfs
       tasks:   
         Download:
           tool: download
           input:
             donor: donor
             normal_id: normalBam
-            tumour_id: tumours.tumourBam
-            vcflist: tumours.associatedVcfs
+            tumour_id: tumour_list.tumourBam
+            vcflist: tumour_list.associatedVcfs
 
     #
     # run_workflow:
