@@ -1,5 +1,5 @@
 {
-    "json": "path to this file"
+    "json": "path to this file",
     "vcfdir": "",
     "refFile": "Homo_sapiens_assembly19.fasta",
     "donor": "DO52739",
