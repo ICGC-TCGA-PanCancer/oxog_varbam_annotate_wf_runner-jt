@@ -1,6 +1,6 @@
 workflow:
   name:  OxoG-Dockstore
-  version: "0.1.9"
+  version: "0.1.10"
   source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
 
   runtime:
@@ -36,12 +36,12 @@ workflow:
       type: string
     refDataDir:
       type: string
-    tumors:
+    tumours:
       type: array
       items:
         type: object
         properties:
-          tumorId:
+          tumourId:
             type: string
           bamFileName:
             type: string
@@ -65,8 +65,8 @@ workflow:
       input:
         donor: donor
         normal_id: normalBam
-        tumor_id: tumorBam
-        vcflist: tumors
+        tumour_id: tumourBam
+        vcflist: tumours
 
     #
     # run_workflow:
@@ -87,7 +87,7 @@ tools:
         type: string
       vcflist:
         type: string
-      tumor_id:
+      tumour_id:
         type: string
       object_id:
         type: string
