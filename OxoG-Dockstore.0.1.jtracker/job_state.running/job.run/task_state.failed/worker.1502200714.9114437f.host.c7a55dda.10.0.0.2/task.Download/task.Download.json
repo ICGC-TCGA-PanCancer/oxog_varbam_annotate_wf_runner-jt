@@ -3,11 +3,23 @@
   "depends_on": null, 
   "tool": "download", 
   "command": "download.py", 
+  "output": [
+    {
+      "_jt_": {
+        "worker_id": "worker.1502200714.9114437f.host.c7a55dda.10.0.0.2", 
+        "workflow_version": "0.1.10", 
+        "jt_version": "0.1.0rc9", 
+        "task_state": "failed"
+      }
+    }
+  ], 
   "input": {
     "donor": "DO52739", 
     "normal_id": "DO52739/6a40a6df68474d9357bacc988ea3e30e.bam", 
     "vcflist": [
       {
+        "bamFileName": "7676725d9976424c98f7a92075e65554.bam", 
+        "tumourId": "7676725d9976424c98f7a92075e65554", 
         "associatedVcfs": [
           "f8f0136b-09ec-d079-e040-11ac0c4842e7.broad-mutect-v3.20160222.somatic.snv_mnv.vcf.gz", 
           "f8f0136b-09ec-d079-e040-11ac0c4842e7.broad-dRanger_snowman-10.20160101.somatic.sv.vcf.gz", 
@@ -19,9 +31,7 @@
           "f8f0136b-09ec-d079-e040-11ac0c4842e7.svcp_1-0-5.20150306.somatic.snv_mnv.vcf.gz", 
           "f8f0136b-09ec-d079-e040-11ac0c4842e7.svcp_1-0-5.20150306.somatic.indel.vcf.gz", 
           "f8f0136b-09ec-d079-e040-11ac0c4842e7.svfix2_4-0-12.20160213.somatic.sv.vcf.gz"
-        ], 
-        "tumourId": "7676725d9976424c98f7a92075e65554", 
-        "bamFileName": "7676725d9976424c98f7a92075e65554.bam"
+        ]
       }
     ], 
     "tumour_id": null
