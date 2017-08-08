@@ -1,6 +1,6 @@
 workflow:
   name:  OxoG-Dockstore
-  version: "0.1.24"
+  version: "0.1.25"
   source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
 
   runtime:
@@ -45,6 +45,8 @@ workflow:
             type: string
           associatedVcfs:
             type: array
+              items:
+              type: string
 
   output: null
 
@@ -94,6 +96,11 @@ tools:
         type: string
       object_id:
         type: string
+        
+  ref_download:
+    command: download_ref.py
+    input:
+      refFile
 
   # run_workflow:
   #   command: call_oxog.py
