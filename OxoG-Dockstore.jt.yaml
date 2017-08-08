@@ -1,6 +1,6 @@
 workflow:
   name:  OxoG-Dockstore
-  version: "0.1.27"
+  version: "0.1.28"
   source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
 
   runtime:
@@ -12,8 +12,6 @@ workflow:
     cpu: 2
 
   input:
-    json:  #path to self
-      type: string
     vcfdir:
       type: string
     refFile:
