@@ -1,6 +1,6 @@
 workflow:
   name:  OxoG-Dockstore
-  version: "0.1.10"
+  version: "0.1.11"
   source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
 
   runtime:
@@ -66,7 +66,7 @@ workflow:
         donor: donor
         normal_id: normalBam
         tumour_id: tumourBam
-        vcflist: tumours
+        vcflist: tumours.associatedVcfs
 
     #
     # run_workflow:
@@ -86,7 +86,7 @@ tools:
       donor:
         type: string
       vcflist:
-        type: string
+        type: array
       tumour_id:
         type: string
       object_id:
