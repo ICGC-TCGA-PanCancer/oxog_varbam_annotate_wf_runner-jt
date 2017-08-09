@@ -1,9 +1,9 @@
 {
     "json": "template.json",
-    "vcfdir": "DO52739/",
+    "vcfdir": "DO52739",
     "refFile": "Homo_sapiens_assembly19.fasta",
     "donor": "DO52739",
-    "normalBam": "DO52739/6a40a6df68474d9357bacc988ea3e30e.bam",
+    "normalBam": "6a40a6df68474d9357bacc988ea3e30e.bam",
     "tumours":
     [
         {
