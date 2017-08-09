@@ -50,10 +50,10 @@ try:
     os.mkdir(donor)
     for i in vcf:
         #include a get object ID step
-        k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[i], '--out-dir', donor])
+        k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[i], '--output-dir', donor])
 
-    r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[object_id], '--out-dir', donor])
-    f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[tumor_id], '--out-dir', donor])
+    r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[object_id], '--output-dir', donor])
+    f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[tumor_id], '--output-dir', donor])
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
     sys.exit(1)  # task failed
