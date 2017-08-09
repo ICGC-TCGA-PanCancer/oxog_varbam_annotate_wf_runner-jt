@@ -49,11 +49,12 @@ task_start = int(time.time())
 try:
     os.mkdir(donor)
     json_input= {}
+    data["vcfdir"] = {}
     json_input["vcfdir"].append({
         "path": donor,
         "class": "Directory"
     })
-
+    data["tumours"] = {}
     json_input["tumours"].append({
         "tumourId": tumour_id,
         "bamFileName": tumour_id

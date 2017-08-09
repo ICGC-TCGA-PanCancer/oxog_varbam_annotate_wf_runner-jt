@@ -1,6 +1,7 @@
 import urllib
 import subprocess
 
+json_input= {}
 json_input["refFile"].append({
     "path": "Homo_sapiens_assembly19.fasta" ,
     "class": "File"
