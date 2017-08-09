@@ -48,12 +48,26 @@ task_start = int(time.time())
 
 try:
     os.mkdir(donor)
-    for i in vcf:
-        #include a get object ID step
-        k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[i], '--output-dir', donor])
+    json_input= {}
+    json_input["vcfdir"].append({
+        "path": donor,
+        "class": "Directory"
+    })
 
-    r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[object_id], '--output-dir', donor])
-    f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[tumor_id], '--output-dir', donor])
+    json_input["tumours"].append({
+        "tumourId": tumour_id,
+        "bamFileName": tumour_id
+    })
+
+    if object_id:
+        r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[object_id], '--output-dir', donor])
+    else:
+        for i in vcf:
+        #include a get object ID step
+            k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[i], '--output-dir', donor])
+            json_input["bamFileName"].append({i})
+        f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[tumor_id], '--output-dir', donor])
+
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
     sys.exit(1)  # task failed
