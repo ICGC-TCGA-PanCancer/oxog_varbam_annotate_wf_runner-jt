@@ -86,6 +86,12 @@ workflow:
 
 
 tools:
+  bam_download:
+    command: download.py
+    input:
+      object_id:
+        type: string
+
   download:
     command: download.py
     input:
@@ -94,8 +100,6 @@ tools:
       vcflist:
         type: array
       tumour_id:
-        type: string
-      object_id:
         type: string
 
   ref_download:
