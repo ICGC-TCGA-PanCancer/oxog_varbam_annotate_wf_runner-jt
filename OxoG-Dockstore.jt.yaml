@@ -1,6 +1,6 @@
 workflow:
   name:  OxoG-Dockstore
-  version: "0.1.29"
+  version: "0.1.30"
   source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
 
   runtime:
@@ -64,7 +64,7 @@ workflow:
           tool: download
           input:
             donor: donor
-            normal_id: normalBam
+            object_id: normalBam
             tumour_id: tumour.tumourId
             vcflist: tumour.associatedVcfs
           depends_on: null
@@ -96,7 +96,8 @@ tools:
   ref_download:
     command: download_ref.py
     input:
-      type: string
+      refFile:
+        type: string
 
   # run_workflow:
   #   command: call_oxog.py
