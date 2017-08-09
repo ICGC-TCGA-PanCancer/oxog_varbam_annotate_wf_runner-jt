@@ -43,8 +43,6 @@ workflow:
             type: string
           associatedVcfs:
             type: array
-            items:
-              type: string
 
   output: null
 
@@ -58,17 +56,17 @@ workflow:
     parallel_download:
       scatter:
         input:
-          tumour_list:
+          tumour:
             with_items: tumours
-            task_suffix: tumour_list.associatedVcfs
+            task_suffix: tumour.associatedVcfs
       tasks:   
         Download:
           tool: download
           input:
             donor: donor
             normal_id: normalBam
-            tumour_id: tumour_list.tumourId
-            vcflist: tumour_list.associatedVcfs
+            tumour_id: tumour.tumourId
+            vcflist: tumour.associatedVcfs
           depends_on: null
 
     #
