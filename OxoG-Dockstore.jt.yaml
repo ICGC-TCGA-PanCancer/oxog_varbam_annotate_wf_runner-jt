@@ -58,7 +58,7 @@ workflow:
         input:
           tumour:
             with_items: tumours
-            task_suffix: tumour.associatedVcfs
+            task_suffix: tumour.tumourId
       tasks:
         download:
           tool: download
