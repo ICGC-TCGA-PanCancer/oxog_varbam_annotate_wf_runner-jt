@@ -8,7 +8,7 @@
     [
         {
             "tumourId": ["7676725d9976424c98f7a92075e65554"],
-            "bamFileName": "7676725d9976424c98f7a92075e65554.bam",
+            "bamFileName": ["7676725d9976424c98f7a92075e65554.bam"],
             "associatedVcfs":
             [
               [
