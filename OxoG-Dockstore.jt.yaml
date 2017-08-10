@@ -1,6 +1,6 @@
 workflow:
   name:  OxoG-Dockstore
-  version: "0.1.39"
+  version: "0.1.40"
   source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
 
   runtime:
@@ -146,7 +146,7 @@ tools:
 
   run_workflow:
     command: call_oxog.py
-      input:
+    input:
         json_in:
           type: dict
         donor:
