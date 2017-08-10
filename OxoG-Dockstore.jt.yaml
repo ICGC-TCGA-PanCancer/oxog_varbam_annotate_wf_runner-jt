@@ -135,6 +135,8 @@ tools:
 #  run_workflow:
 #    command: call_oxog.py
 #      input:
+#        donor:
+#          type: string
 #        oxoQScore:
 #          type: string
 #        out_dir:

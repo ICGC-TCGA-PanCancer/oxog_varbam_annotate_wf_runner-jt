@@ -11,10 +11,37 @@ from utils import get_task_dict, save_output_json
 task_dict = get_task_dict(sys.argv[1])
 cwd = os.getcwd()
 
+donor = task_dict.get('input').get('donor')
+oxoQScore = task_dict.get('input').get('oxoQScore')
+out_dir = task_dict.get('input').get('out_dir')
+snv-padding = task_dict.get('input').get('snv-padding')
+sv-padding = task_dict.get('input').get('sv-padding')
+indel-padding = task_dict.get('input').get('indel-padding')
+minibamName = task_dict.get('input').get('minibamName')
+
 task_start = int(time.time())
 
 try:
-        r = subprocess.check_output(['cwltool', '--non-strict', 'oxog_varbam_annotate_wf.cwl', 'dockstore_test.json'])
+    json_input["oxoQScore"] = oxoQScore
+    json_input["out_dir"] = out_dir
+    json_input["snv-padding"] = snv-padding
+    json_input["sv-padding"] = sv-padding
+    json_input["indel-padding"] = indel-padding
+    json_input["minibamName"] = minibamName
+    json_input["inputFileDirectory"] = {}
+    json_input["inputFileDirectory"].append({
+        "path": donor,
+        "location": donor
+        "class": "Directory"
+    })
+    json_input["refDataDir"] = {}
+    json_input["refDataDir"].append({
+        "path": donor,
+        "location": donor
+        "class": "Directory"
+    })
+
+    r = subprocess.check_output(['cwltool', '--non-strict', 'oxog_varbam_annotate_wf.cwl', 'dockstore_test.json'])
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
     sys.exit(1)  # task failed
