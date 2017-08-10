@@ -58,6 +58,7 @@ workflow:
       input:
         donor: donor
         object_id: normalBam
+        json_in: json_in@ref_download
 
     parallel_download:
       scatter:
@@ -72,17 +73,31 @@ workflow:
             donor: donor
             tumour_id: tumour.tumourId
             vcflist: tumour.associatedVcfs
-          depends_on: null
+            json_in: json_in@download_bam
+          depends_on:
+          - completed@download_bam
 
-    #
     # run_workflow:
     #   tool: run_workflow
     #   input:
-    #     json:
+    #     donor:
+    #       type: string
+    #     oxoQScore:
+    #       type: string
+    #     out_dir:
+    #       type: string
+    #     snv-padding:
+    #       type: string
+    #     sv-padding:
+    #       type: string
+    #     indel-padding:
+    #       type: string
+    #     minibamName:
+    #       type: string
     #   depends_on:
-    #   - completed@vcfDownload
+    #   - completed@download
     #   - completed@ref_download
-    #   - completed@bamDownload
+    #   - completed@download_bam
 
 
 tools:
@@ -91,6 +106,9 @@ tools:
     input:
       object_id:
         type: string
+    output:
+      json_in:
+        type: dict
 
   download:
     command: download.py
@@ -101,14 +119,31 @@ tools:
         type: array
       tumour_id:
         type: string
+    output:
+      json_in:
+        type: dict
 
   ref_download:
     command: download_ref.py
     input:
       refFile:
         type: string
+    output:
+      json_in:
+        type: dict
 
 #  run_workflow:
 #    command: call_oxog.py
 #      input:
-#        json:
+#        oxoQScore:
+#          type: string
+#        out_dir:
+#          type: string
+#        snv-padding:
+#          type: string
+#        sv-padding:
+#          type: string
+#        indel-padding:
+#          type: string
+#        minibamName:
+#          type: string

@@ -48,25 +48,19 @@ task_start = int(time.time())
 
 try:
     os.mkdir(donor)
-    json_input= {}
-    data["vcfdir"] = {}
-    json_input["vcfdir"].append({
-        "path": donor,
-        "class": "Directory"
-    })
-    data["tumours"] = {}
-    json_input["tumours"].append({
-        "tumourId": tumour_id,
-        "bamFileName": tumour_id
-    })
 
     if object_id:
         r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[object_id], '--output-dir', donor])
     else:
+        json_input["tumours"] = {}
+        json_input["tumours"].append({
+            "tumourId": tumour_id,
+            "bamFileName": tumour_id
+        })
         for i in vcf:
-        #include a get object ID step
             k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[i], '--output-dir', donor])
             json_input["bamFileName"].append({i})
+
         f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[tumor_id], '--output-dir', donor])
 
 except Exception, e:
@@ -80,6 +74,7 @@ task_stop = int(time.time())
 
 output_json = {
     'file': os.path.join(cwd, file_name)
+    'json_in': json_input
 }
 
 save_output_json(output_json)
