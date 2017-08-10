@@ -106,6 +106,8 @@ tools:
     input:
       object_id:
         type: string
+      json_in:
+        type: dict
     output:
       json_in:
         type: dict
@@ -119,6 +121,8 @@ tools:
         type: array
       tumour_id:
         type: string
+      json_in:
+        type: dict
     output:
       json_in:
         type: dict
@@ -128,6 +132,8 @@ tools:
     input:
       refFile:
         type: string
+      json_in:
+        type: dict
     output:
       json_in:
         type: dict
@@ -135,6 +141,8 @@ tools:
 #  run_workflow:
 #    command: call_oxog.py
 #      input:
+#        json_in:
+#          type: dict
 #        donor:
 #          type: string
 #        oxoQScore:

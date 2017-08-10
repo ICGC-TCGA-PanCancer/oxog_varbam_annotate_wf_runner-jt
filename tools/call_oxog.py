@@ -28,6 +28,7 @@ try:
     json_input["sv-padding"] = sv-padding
     json_input["indel-padding"] = indel-padding
     json_input["minibamName"] = minibamName
+
     json_input["inputFileDirectory"] = {}
     json_input["inputFileDirectory"].append({
         "path": donor,
