@@ -37,12 +37,15 @@ try:
     })
     json_input["refDataDir"] = {}
     json_input["refDataDir"].append({
-        "path": donor,
-        "location": donor
+        "path": '/ref',
+        "location": '/ref'
         "class": "Directory"
     })
 
-    r = subprocess.check_output(['cwltool', '--non-strict', 'oxog_varbam_annotate_wf.cwl', 'dockstore_test.json'])
+    with open('run.json', 'w') as rj:
+        json.dump(json_input, rj)
+
+    r = subprocess.check_output(['cwltool', '--non-strict', 'oxog_varbam_annotate_wf.cwl', 'run.json'])
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
     sys.exit(1)  # task failed

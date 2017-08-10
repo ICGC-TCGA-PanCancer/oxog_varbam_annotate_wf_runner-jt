@@ -47,11 +47,11 @@ workflow:
   output: null
 
   tasks:
-    #
-    #ref_download:
-    #  tool: ref_download
-    #  input:
-    #    refFile: refFile
+
+    ref_download:
+      tool: ref_download
+      input:
+        refFile: refFile
 
     download_bam:
       tool: download
@@ -71,34 +71,36 @@ workflow:
           tool: download
           input:
             donor: donor
-            tumour_id: tumour.tumourId
+            tumour_id: tumour.bamFileName
             vcflist: tumour.associatedVcfs
             json_in: json_in@download_bam
           depends_on:
           - completed@download_bam
 
-    # run_workflow:
-    #   tool: run_workflow
-    #   input:
-    #     donor:
-    #       type: string
-    #     oxoQScore:
-    #       type: string
-    #     out_dir:
-    #       type: string
-    #     snv-padding:
-    #       type: string
-    #     sv-padding:
-    #       type: string
-    #     indel-padding:
-    #       type: string
-    #     minibamName:
-    #       type: string
-    #   depends_on:
-    #   - completed@download
-    #   - completed@ref_download
-    #   - completed@download_bam
+    run_workflow:
+      tool: run_workflow
+      input:
+        donor:
+          type: string
+        oxoQScore:
+          type: string
+        out_dir:
+          type: string
+        snv-padding:
+          type: string
+        sv-padding:
+          type: string
+        indel-padding:
+          type: string
+        minibamName:
+          type: string
+      depends_on:
+      - completed@download
 
+    clear:
+      tool: bam_delete
+      input:
+        donor: donor
 
 tools:
   bam_download:
@@ -132,28 +134,32 @@ tools:
     input:
       refFile:
         type: string
-      json_in:
-        type: dict
     output:
       json_in:
         type: dict
 
-#  run_workflow:
-#    command: call_oxog.py
-#      input:
-#        json_in:
-#          type: dict
-#        donor:
-#          type: string
-#        oxoQScore:
-#          type: string
-#        out_dir:
-#          type: string
-#        snv-padding:
-#          type: string
-#        sv-padding:
-#          type: string
-#        indel-padding:
-#          type: string
-#        minibamName:
-#          type: string
+  bam_delete:
+    command: deleteBams.py
+    input:
+      donor:
+        type: string
+
+  run_workflow:
+    command: call_oxog.py
+      input:
+        json_in:
+          type: dict
+        donor:
+          type: string
+        oxoQScore:
+          type: string
+        out_dir:
+          type: string
+        snv-padding:
+          type: string
+        sv-padding:
+          type: string
+        indel-padding:
+          type: string
+        minibamName:
+          type: string
