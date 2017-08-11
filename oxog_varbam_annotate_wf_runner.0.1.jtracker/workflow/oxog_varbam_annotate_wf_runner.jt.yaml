@@ -71,8 +71,8 @@ workflow:
       depends_on:
       - completed@setup
 
-    teardown:
-      tool: teardown
+    cleanup:
+      tool: cleanup
       input:
         donor: donor
       depends_on:
@@ -99,8 +99,8 @@ tools:
       json_in:
         type: dict
 
-  teardown:
-    command: teardown.py
+  cleanup:
+    command: cleanup.py
     input:
       donor:
         type: string
