@@ -59,7 +59,7 @@ try:
     })
 
     #ref file download
-    if os.isfile("public_full9.tar.gz") == False
+    if os.isfile("public_full9.tar.gz") == False:
         urllib.urlretrieve('https://personal.broadinstitute.org/gsaksena/public_full9.tar.gz','public_full9.tar.gz')
         print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', '/ref']))
 
