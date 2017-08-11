@@ -71,7 +71,7 @@ try:
         f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[j], '--output-dir', donor])
         json_input["tumours"].append({
             "tumourId": tumour_id,
-            "bamFileName": tumour_id
+            "bamFileName": tumour_id,
             "associatedVcfs": []
         })
 
