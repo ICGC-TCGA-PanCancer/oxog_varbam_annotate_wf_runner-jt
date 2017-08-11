@@ -52,8 +52,8 @@ workflow:
       tool: setup
       input:
         donor: donor
-        tumour_id: tumours[bamFileName]
-        vcflist: tumours[associatedVcfs]
+        tumours: tumours
+        vcflist: vcflist
         normal_id: normalBam
       depends_on:
 
@@ -93,6 +93,8 @@ tools:
         type: array
       normal_id:
         type: string
+      tumours:
+        type: array
     output:
       json_in:
         type: dict
