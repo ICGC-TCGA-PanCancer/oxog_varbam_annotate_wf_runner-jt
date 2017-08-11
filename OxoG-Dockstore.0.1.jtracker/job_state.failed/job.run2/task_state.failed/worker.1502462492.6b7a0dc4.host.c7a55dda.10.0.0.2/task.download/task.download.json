@@ -1,0 +1,25 @@
+{
+  "task": "download", 
+  "depends_on": null, 
+  "tool": "download", 
+  "command": "download.py", 
+  "output": [
+    {
+      "_jt_": {
+        "worker_id": "worker.1502462492.6b7a0dc4.host.c7a55dda.10.0.0.2", 
+        "workflow_version": "0.1.42", 
+        "jt_version": "0.1.0rc9", 
+        "task_state": "failed"
+      }
+    }
+  ], 
+  "input": {
+    "donor": "DO52739", 
+    "vcflist": null, 
+    "normal_id": "6a40a6df68474d9357bacc988ea3e30e.bam", 
+    "tumour_id": null
+  }, 
+  "runtime": {
+    "docker": null
+  }
+}
