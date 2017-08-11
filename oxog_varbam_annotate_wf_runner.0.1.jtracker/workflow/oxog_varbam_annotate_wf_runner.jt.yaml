@@ -48,8 +48,8 @@ workflow:
 
   tasks:
 
-    download:
-      tool: download
+    setup:
+      tool: setup
       input:
         donor: donor
         tumour_id: tumours[bamFileName]
@@ -71,27 +71,17 @@ workflow:
       depends_on:
       - completed@download
 
-    clear:
-      tool: bam_delete
+    teardown:
+      tool: teardown
       input:
         donor: donor
       depends_on:
       - completed@run_workflow
 
 tools:
-  bam_download:
-    command: download.py
-    input:
-      object_id:
-        type: string
-      json_in:
-        type: dict
-    output:
-      json_in:
-        type: dict
 
-  download:
-    command: download.py
+  setup:
+    command: setup.py
     input:
       refFile:
         type: string
@@ -107,23 +97,14 @@ tools:
       json_in:
         type: dict
 
-  ref_download:
-    command: download_ref.py
-    input:
-      refFile:
-        type: string
-    output:
-      json_in:
-        type: dict
-
-  bam_delete:
-    command: deleteBams.py
+  teardown:
+    command: teardown.py
     input:
       donor:
         type: string
 
   run_workflow:
-    command: call_oxog.py
+    command: run_workflow.py
     input:
       json_in:
         type: dict
