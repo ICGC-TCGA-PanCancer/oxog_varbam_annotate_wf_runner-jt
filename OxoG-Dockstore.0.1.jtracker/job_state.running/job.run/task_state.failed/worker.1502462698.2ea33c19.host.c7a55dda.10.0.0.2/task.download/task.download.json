@@ -3,6 +3,16 @@
   "depends_on": null, 
   "tool": "download", 
   "command": "download.py", 
+  "output": [
+    {
+      "_jt_": {
+        "worker_id": "worker.1502462698.2ea33c19.host.c7a55dda.10.0.0.2", 
+        "workflow_version": "0.1.43", 
+        "jt_version": "0.1.0rc9", 
+        "task_state": "failed"
+      }
+    }
+  ], 
   "input": {
     "donor": "DO52739", 
     "vcflist": null, 
