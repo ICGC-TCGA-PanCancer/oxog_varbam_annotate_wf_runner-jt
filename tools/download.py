@@ -47,39 +47,37 @@ task_start = int(time.time())
 
 try:
     json_input= {}
-    json_input["vcfdir"] = {}
-    json_input["vcfdir"].append({
+    json_input["vcfdir"] = {
         "path": donor,
         "class": "Directory"
-    })
-    json_input["refFile"] = {}
-    json_input["refFile"].append({
+    }
+    json_input["refFile"] = {
         "path": "Homo_sapiens_assembly19.fasta" ,
         "class": "File"
-    })
+    }
 
     #ref file download
     if os.isfile("public_full9.tar.gz") == False:
         urllib.urlretrieve('https://personal.broadinstitute.org/gsaksena/public_full9.tar.gz','public_full9.tar.gz')
         print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', '/ref']))
 
-    json_input["tumours"] = []
-    os.mkdir(donor)
-
     #normalBam
     r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[object_id], '--output-dir', donor])
 
     #tumour
+    json_input["tumours"] = []
+    os.mkdir(donor)
     for j in tumour_id:
         f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[j], '--output-dir', donor])
         json_input["tumours"].append({
             "tumourId": tumour_id,
             "bamFileName": tumour_id
+            "associatedVcfs": []
         })
 
         for i in vcf:
             k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[i], '--output-dir', donor])
-            json_input["bamFileName"].append({i})
+            json_input["associatedVcfs"].append({i})
 
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
