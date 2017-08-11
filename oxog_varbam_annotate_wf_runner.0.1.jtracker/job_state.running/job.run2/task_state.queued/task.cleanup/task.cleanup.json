@@ -1,0 +1,14 @@
+{
+  "task": "cleanup", 
+  "depends_on": [
+    "completed@run_workflow"
+  ], 
+  "tool": "cleanup", 
+  "command": "cleanup.py", 
+  "input": {
+    "donor": "DO52739"
+  }, 
+  "runtime": {
+    "docker": null
+  }
+}
