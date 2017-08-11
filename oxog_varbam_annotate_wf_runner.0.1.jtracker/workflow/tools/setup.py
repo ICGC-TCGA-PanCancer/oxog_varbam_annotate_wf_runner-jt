@@ -68,14 +68,14 @@ try:
     json_input["tumours"] = []
     os.mkdir(donor)
     for j in tumour:
-        f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[j], '--output-dir', donor])
+        f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[j['bamFileName']], '--output-dir', donor])
         json_input["tumours"].append({
             "tumourId": tumour_id,
             "bamFileName": tumour_id,
             "associatedVcfs": []
         })
 
-        for i in vcf:
+        for i in j['associatedVcfs']:
             k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[i], '--output-dir', donor])
             json_input["associatedVcfs"].append({i})
 
