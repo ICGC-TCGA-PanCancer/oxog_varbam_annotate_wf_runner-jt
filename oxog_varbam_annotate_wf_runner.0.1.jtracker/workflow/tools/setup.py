@@ -26,8 +26,8 @@ cwd = os.getcwd()
 donor = task_dict.get('input').get('donor')
 #vcflist = task_dict.get('input').get('vcflist')
 object_id = task_dict.get('input').get('object_id')
-tumour_id = task_dict.get('input').get('tumour_id')
-vcf = task_dict.get('input').get('vcflist')
+tumours= task_dict.get('input').get('tumour')
+
 
 #temp hard code (obj ids may not line up correctly just for test)
 objid = {'6a40a6df68474d9357bacc988ea3e30e.bam':'0a84c77a-510c-5d5e-904b-723464025c76',
@@ -67,7 +67,7 @@ try:
     #tumour
     json_input["tumours"] = []
     os.mkdir(donor)
-    for j in tumour_id:
+    for j in tumour:
         f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[j], '--output-dir', donor])
         json_input["tumours"].append({
             "tumourId": tumour_id,

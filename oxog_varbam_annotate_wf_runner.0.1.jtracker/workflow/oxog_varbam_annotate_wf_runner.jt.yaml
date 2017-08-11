@@ -53,7 +53,6 @@ workflow:
       input:
         donor: donor
         tumours: tumours
-        vcflist: vcflist
         normal_id: normalBam
       depends_on:
 
@@ -83,14 +82,8 @@ tools:
   setup:
     command: setup.py
     input:
-      refFile:
-        type: string
       donor:
         type: string
-      vcflist:
-        type: array
-      tumour_id:
-        type: array
       normal_id:
         type: string
       tumours:
