@@ -67,17 +67,17 @@ try:
     #tumour
     json_input["tumours"] = []
     os.mkdir(donor)
-    for j in tumour:
-        f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[j['bamFileName']], '--output-dir', donor])
+    for t in tumours:
+        f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[t['bamFileName']], '--output-dir', donor])
         json_input["tumours"].append({
-            "tumourId": tumour_id,
-            "bamFileName": tumour_id,
-            "associatedVcfs": []
+            "tumourId": t['tumourId'],
+            "bamFileName": t['bamFileName'],
+            "associatedVcfs": t['associatedVcfs']
         })
 
-        for i in j['associatedVcfs']:
+        for i in t['associatedVcfs']:
             k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[i], '--output-dir', donor])
-            json_input["associatedVcfs"].append({i})
+
 
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))

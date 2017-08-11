@@ -92,12 +92,6 @@ tools:
       json_in:
         type: dict
 
-  cleanup:
-    command: cleanup.py
-    input:
-      donor:
-        type: string
-
   run_workflow:
     command: run_workflow.py
     input:
@@ -116,4 +110,10 @@ tools:
       indel-padding:
         type: string
       minibamName:
+        type: string
+
+  cleanup:
+    command: cleanup.py
+    input:
+      donor:
         type: string
