@@ -1,6 +1,6 @@
 workflow:
   name:  OxoG-Dockstore
-  version: "0.1.41"
+  version: "0.1.42"
   source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
 
   runtime:
@@ -60,20 +60,14 @@ workflow:
     run_workflow:
       tool: run_workflow
       input:
-        donor:
-          type: string
-        oxoQScore:
-          type: string
-        out_dir:
-          type: string
-        snv-padding:
-          type: string
-        sv-padding:
-          type: string
-        indel-padding:
-          type: string
-        minibamName:
-          type: string
+        json_in: json_in@download
+        donor: donor
+        oxoQScore: oxoQScore
+        out_dir: out_dir
+        snv-padding: snv-padding
+        sv-padding: sv-padding
+        indel-padding: indel-padding
+        minibamName: minibamName
       depends_on:
       - completed@download
 
@@ -81,6 +75,8 @@ workflow:
       tool: bam_delete
       input:
         donor: donor
+      depends_on:
+      - completed@run_workflow
 
 tools:
   bam_download:
