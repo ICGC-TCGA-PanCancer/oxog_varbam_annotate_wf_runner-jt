@@ -1,0 +1,14 @@
+{
+  "task": "clear", 
+  "depends_on": [
+    "completed@run_workflow"
+  ], 
+  "tool": "bam_delete", 
+  "command": "deleteBams.py", 
+  "input": {
+    "donor": "DO52739"
+  }, 
+  "runtime": {
+    "docker": null
+  }
+}
