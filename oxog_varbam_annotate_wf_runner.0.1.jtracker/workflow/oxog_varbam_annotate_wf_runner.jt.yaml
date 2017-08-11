@@ -69,7 +69,7 @@ workflow:
         indel-padding: indel-padding
         minibamName: minibamName
       depends_on:
-      - completed@download
+      - completed@setup
 
     teardown:
       tool: teardown
