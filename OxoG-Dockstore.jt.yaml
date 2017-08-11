@@ -1,6 +1,6 @@
 workflow:
   name:  OxoG-Dockstore
-  version: "0.1.40"
+  version: "0.1.41"
   source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
 
   runtime:
@@ -38,9 +38,9 @@ workflow:
         type: object
         properties:
           tumourId:
-            type: string
+            type: array
           bamFileName:
-            type: string
+            type: array
           associatedVcfs:
             type: array
 
@@ -48,34 +48,14 @@ workflow:
 
   tasks:
 
-    ref_download:
-      tool: ref_download
-      input:
-        refFile: refFile
-
-    download_bam:
+    download:
       tool: download
       input:
         donor: donor
-        object_id: normalBam
-        json_in: json_in@ref_download
-
-    parallel_download:
-      scatter:
-        input:
-          tumour:
-            with_items: tumours
-            task_suffix: tumour.bamFileName
-      tasks:
-        download:
-          tool: download
-          input:
-            donor: donor
-            tumour_id: tumour.bamFileName
-            vcflist: tumour.associatedVcfs
-            json_in: json_in@download_bam
-          depends_on:
-          - completed@download_bam
+        tumour_id: tumours[bamFileName]
+        vcflist: tumours[associatedVcfs]
+        normal_id: normalBam
+      depends_on:
 
     run_workflow:
       tool: run_workflow
@@ -117,14 +97,16 @@ tools:
   download:
     command: download.py
     input:
+      refFile:
+        type: string
       donor:
         type: string
       vcflist:
         type: array
       tumour_id:
+        type: array
+      normal_id:
         type: string
-      json_in:
-        type: dict
     output:
       json_in:
         type: dict
@@ -147,19 +129,19 @@ tools:
   run_workflow:
     command: call_oxog.py
     input:
-        json_in:
-          type: dict
-        donor:
-          type: string
-        oxoQScore:
-          type: string
-        out_dir:
-          type: string
-        snv-padding:
-          type: string
-        sv-padding:
-          type: string
-        indel-padding:
-          type: string
-        minibamName:
-          type: string
+      json_in:
+        type: dict
+      donor:
+        type: string
+      oxoQScore:
+        type: string
+      out_dir:
+        type: string
+      snv-padding:
+        type: string
+      sv-padding:
+        type: string
+      indel-padding:
+        type: string
+      minibamName:
+        type: string

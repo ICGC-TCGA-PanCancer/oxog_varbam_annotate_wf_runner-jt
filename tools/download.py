@@ -16,18 +16,17 @@ cwd = os.getcwd()
       donor:
         type: string
       vcflist:
-        type: string
+        type: array
       normal_id:
         type: string
       tumor_id:
-        type: string
-      associatedVcfs:
         type: array
+
 """
 donor = task_dict.get('input').get('donor')
 #vcflist = task_dict.get('input').get('vcflist')
 object_id = task_dict.get('input').get('object_id')
-tumor_id = task_dict.get('input').get('tumor_id')
+tumour_id = task_dict.get('input').get('tumour_id')
 vcf = task_dict.get('input').get('vcflist')
 
 #temp hard code (obj ids may not line up correctly just for test)
@@ -47,21 +46,40 @@ objid = {'6a40a6df68474d9357bacc988ea3e30e.bam':'0a84c77a-510c-5d5e-904b-7234640
 task_start = int(time.time())
 
 try:
+    json_input= {}
+    json_input["vcfdir"] = {}
+    json_input["vcfdir"].append({
+        "path": donor,
+        "class": "Directory"
+    })
+    json_input["refFile"] = {}
+    json_input["refFile"].append({
+        "path": "Homo_sapiens_assembly19.fasta" ,
+        "class": "File"
+    })
+
+    #ref file download
+    if os.isfile("public_full9.tar.gz") = False
+        urllib.urlretrieve('https://personal.broadinstitute.org/gsaksena/public_full9.tar.gz','public_full9.tar.gz')
+        print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', '/ref']))
+
+    json_input["tumours"] = []
     os.mkdir(donor)
 
-    if object_id:
-        r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[object_id], '--output-dir', donor])
-    else:
-        json_input["tumours"] = {}
+    #normalBam
+    r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[object_id], '--output-dir', donor])
+
+    #tumour
+    for j in tumour_id:
+        f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[j], '--output-dir', donor])
         json_input["tumours"].append({
             "tumourId": tumour_id,
             "bamFileName": tumour_id
         })
+
         for i in vcf:
             k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[i], '--output-dir', donor])
             json_input["bamFileName"].append({i})
-
-        f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[tumor_id], '--output-dir', donor])
 
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
