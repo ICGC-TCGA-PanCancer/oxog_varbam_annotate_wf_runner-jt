@@ -1,7 +1,7 @@
 workflow:
-  name:  OxoG-Dockstore
+  name:  oxog_varbam_annotate_wf_runner
   version: "0.1.47"
-  source_code: "https://github.com/Chen2x/OxoG-Dockstore-jt"
+  source_code: "https://github.com/ICGC-TCGA-PanCancer/oxog_varbam_annotate_wf_runner-jt"
 
   runtime:
     docker: null
