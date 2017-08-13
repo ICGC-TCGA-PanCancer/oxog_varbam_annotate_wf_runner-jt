@@ -47,7 +47,6 @@ workflow:
   output: null
 
   tasks:
-
     setup:
       tool: setup
       input:
@@ -80,7 +79,7 @@ workflow:
 tools:
 
   setup:
-    command: setup.py
+    command: setup_download.py
     input:
       donor:
         type: string
