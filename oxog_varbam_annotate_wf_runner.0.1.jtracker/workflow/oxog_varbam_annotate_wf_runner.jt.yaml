@@ -79,7 +79,7 @@ workflow:
 tools:
 
   setup:
-    command: setup_download.py
+    command: setup_downloads.py
     input:
       donor:
         type: string
