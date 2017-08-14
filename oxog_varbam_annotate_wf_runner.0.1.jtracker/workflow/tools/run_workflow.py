@@ -54,7 +54,7 @@ try:
     json_input["inputFileDirectory"] = {}
     json_input["inputFileDirectory"].append({
         "path": donor,
-        "location": donor
+        "location": donor,
         "class": "Directory"
     })
     json_input["refDataDir"] = {}
