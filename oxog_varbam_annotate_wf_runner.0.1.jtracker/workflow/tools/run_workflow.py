@@ -60,7 +60,7 @@ try:
     json_input["refDataDir"] = {}
     json_input["refDataDir"].append({
         "path": '/ref',
-        "location": '/ref'
+        "location": '/ref',
         "class": "Directory"
     })
 
