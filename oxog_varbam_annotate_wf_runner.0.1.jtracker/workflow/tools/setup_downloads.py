@@ -62,24 +62,25 @@ try:
 
     #tumour
     for t in tumours:
-        bamObjID = str(list(t["bamFileName"].values())[0])
+        for key, value in t.iteritems():
+            bamObjID = t["bamFileName"][key]
         out_tumour.append(bamObjID)
         #f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', bamObjID, '--output-dir', donor])
 
 
-        for i in list(t['associatedVcfs'].values()):
-            vcfObjID = str(i)
+        for key, value in t['associatedVcfs'].iteritems():
+            vcfObjID = t["bamFileName"][key]
             out_vcf.append(vcfObjID)
             #k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', vcfObjID, '--output-dir', donor])
 
     #only for test get rid of
     for t in tumours:
-        open((str(list(t["bamFileName"].keys())[0])), 'a').close()
+        open((str(list(t["bamFileName"].keys())[0])), donor + '/a').close()
         #f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(t["bamFileName"].values())[0]), '--output-dir', donor])
 
 
         for i in list(t['associatedVcfs'].keys()):
-            open((str(i)), 'a').close()
+            open((str(i)), donor + '/a').close()
 
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
