@@ -58,8 +58,8 @@ workflow:
     run_workflow:
       tool: run_workflow
       input:
-        json_in: json_in@download
         donor: donor
+        tumours: tumours
         oxoQScore: oxoQScore
         out_dir: out_dir
         snv-padding: snv-padding
@@ -100,7 +100,7 @@ tools:
   run_workflow:
     command: run_workflow.py
     input:
-      json_in:
+      tumours:
         type: dict
       donor:
         type: string

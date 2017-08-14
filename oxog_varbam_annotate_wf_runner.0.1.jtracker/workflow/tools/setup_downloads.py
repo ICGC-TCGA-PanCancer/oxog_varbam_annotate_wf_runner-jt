@@ -47,15 +47,7 @@ objid = {'6a40a6df68474d9357bacc988ea3e30e.bam':'0a84c77a-510c-5d5e-904b-7234640
 task_start = int(time.time())
 
 try:
-    json_input= {}
-    json_input["vcfdir"] = {
-        "path": donor,
-        "class": "Directory"
-    }
-    json_input["refFile"] = {
-        "path": "Homo_sapiens_assembly19.fasta" ,
-        "class": "File"
-    }
+
 
     #ref file download
     # if os.path.isfile("public_full9.tar.gz") == False:
@@ -67,25 +59,25 @@ try:
     out_bam = str(list(normal_id.values())[0])
 
     #tumour
-
-    out_tumour =[]
-    out_vcf = []
-    json_input["tumours"] = []
-    os.mkdir(donor)
-
     for t in tumours:
-        out_tumour.append(str(list(t["bamFileName"].values())[0]))
-        #f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(t["bamFileName"].values())[0]), '--output-dir', donor])
-        json_input["tumours"].append({
-            "tumourId": t['tumourId'],
-            "bamFileName": t['bamFileName'],
-            "associatedVcfs": t['associatedVcfs']
-        })
+        bamObjID = str(list(t["bamFileName"].values())[0])
+        out_tumour.append(bamObjID)
+        #f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', bamObjID, '--output-dir', donor])
+
 
         for i in list(t['associatedVcfs'].values()):
-            out_vcf.append(str(i))
-            #k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(i), '--output-dir', donor])
+            vcfObjID = str(i)
+            out_vcf.append(vcfObjID)
+            #k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', vcfObjID, '--output-dir', donor])
 
+    #only for test get rid of
+    for t in tumours:
+        open((str(list(t["bamFileName"].keys())[0])), 'a').close()
+        #f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(t["bamFileName"].values())[0]), '--output-dir', donor])
+
+
+        for i in list(t['associatedVcfs'].keys()):
+            open((str(i)), 'a').close()
 
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
@@ -100,7 +92,6 @@ output_json = {
     'bam': out_bam,
     'tumour_bam': out_tumour,
     'vcf': out_vcf,
-    'json_in': json_input
 }
 
 save_output_json(output_json)
