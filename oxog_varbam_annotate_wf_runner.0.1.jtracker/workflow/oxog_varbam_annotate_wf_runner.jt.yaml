@@ -104,6 +104,8 @@ tools:
   run_workflow:
     command: run_workflow.py
     input:
+      ref_path:
+        type: string
       dir_path:
         type: string
       tumours:
