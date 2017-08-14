@@ -62,14 +62,14 @@ try:
 
     #tumour
     for t in tumours:
-        for key, value in t.iteritems():
-            bamObjID = t["bamFileName"][key]
+        for key, value in t["bamFileName"].iteritems():
+            bamObjID = t[key]
         out_tumour.append(bamObjID)
         #f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', bamObjID, '--output-dir', donor])
 
 
         for key, value in t['associatedVcfs'].iteritems():
-            vcfObjID = t["bamFileName"][key]
+            vcfObjID = t[key]
             out_vcf.append(vcfObjID)
             #k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', vcfObjID, '--output-dir', donor])
 
