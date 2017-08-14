@@ -8,11 +8,14 @@
   "input": {
     "minibamName": "minibam.bam", 
     "out_dir": "/var/spool/cwl/", 
-    "ref_data": "{{ref_data@setup}}", 
-    "sv-padding": "10", 
-    "snv-padding": "200", 
+    "ref_data": null, 
+    "dir_path": "/home/ubuntu/jtracker/worker.1502744020.805ead01.host.c7a55dda.10.0.0.2/job.run2/task.setup/DO52739", 
     "tumours": [
       {
+        "bamFileName": {
+          "7676725d9976424c98f7a92075e65554.bam": "85fbc8e4-382c-5e1f-9430-7c68ed490207"
+        }, 
+        "tumourId": "7676725d9976424c98f7a92075e65554", 
         "associatedVcfs": {
           "f8f0136b-09ec-d079-e040-11ac0c4842e7.svcp_1-0-5.20150306.somatic.snv_mnv.vcf.gz": "595c7ddb-dcde-5867-9b63-74bb1b23cfe4", 
           "f8f0136b-09ec-d079-e040-11ac0c4842e7.broad-mutect-v3.20160222.somatic.snv_mnv.vcf.gz": "6963fa25-5037-50d8-bb15-4e3e9e891d86", 
@@ -24,17 +27,14 @@
           "f8f0136b-09ec-d079-e040-11ac0c4842e7.dkfz-snvCalling_1-0-132-1-hpc.1602051320.somatic.snv_mnv.vcf.gz": "100c52c6-d5cf-5720-91fb-c5d4a7ae165e", 
           "f8f0136b-09ec-d079-e040-11ac0c4842e7.svfix2_4-0-12.20160213.somatic.sv.vcf.gz": "08bccc42-4a01-5a76-a911-ea5544d1c725", 
           "f8f0136b-09ec-d079-e040-11ac0c4842e7.MUSE_1-0rc-b391201-vcf.20160101.somatic.snv_mnv.vcf.gz": "acad417a-20d1-5a94-89a3-fc4bd9c3b863"
-        }, 
-        "tumourId": "7676725d9976424c98f7a92075e65554", 
-        "bamFileName": {
-          "7676725d9976424c98f7a92075e65554.bam": "85fbc8e4-382c-5e1f-9430-7c68ed490207"
         }
       }
     ], 
+    "snv-padding": "200", 
     "donor": "DO52739", 
     "indel-padding": "205", 
     "oxoQScore": "10.3", 
-    "dir_path": "{{dir_path@setup}}"
+    "sv-padding": "10"
   }, 
   "runtime": {
     "docker": null
