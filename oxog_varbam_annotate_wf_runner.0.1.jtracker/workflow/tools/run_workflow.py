@@ -78,8 +78,8 @@ except Exception, e:
 task_stop = int(time.time())
 
 output_json = {
-    'file': os.path.join(cwd, file_name),
-    }
+    'file': os.path.join(cwd, file_name)
+
 }
 
 save_output_json(output_json)
