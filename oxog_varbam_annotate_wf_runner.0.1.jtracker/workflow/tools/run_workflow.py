@@ -33,10 +33,9 @@ try:
         "class": "File"
     }
 
-    out_tumour =[]
-    out_vcf = []
+
     json_input["tumours"] = []
-    os.mkdir(donor)
+
 
     for t in tumours:
         json_input["tumours"].append({

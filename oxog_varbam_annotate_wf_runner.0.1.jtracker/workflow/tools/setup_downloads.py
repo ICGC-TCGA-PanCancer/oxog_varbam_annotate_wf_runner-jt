@@ -48,12 +48,14 @@ task_start = int(time.time())
 
 try:
 
-
     #ref file download
     # if os.path.isfile("public_full9.tar.gz") == False:
     #     urllib.urlretrieve('https://personal.broadinstitute.org/gsaksena/public_full9.tar.gz','public_full9.tar.gz')
     #     print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', '/ref']))
 
+    out_tumour =[]
+    out_vcf = []
+    os.mkdir(donor)
     #normalBam
     #r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(normal_id.values())[0]), '--output-dir', donor])
     out_bam = str(list(normal_id.values())[0])
