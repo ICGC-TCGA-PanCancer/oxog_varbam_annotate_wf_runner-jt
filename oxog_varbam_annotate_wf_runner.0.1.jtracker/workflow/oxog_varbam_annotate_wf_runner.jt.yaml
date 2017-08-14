@@ -58,6 +58,7 @@ workflow:
     run_workflow:
       tool: run_workflow
       input:
+        dir_path: dir_path
         donor: donor
         tumours: tumours
         oxoQScore: oxoQScore
@@ -94,12 +95,14 @@ tools:
         type: array
       vcf:
         type: array
-      json_in:
-        type: dict
+      dir_path:
+        type: string
 
   run_workflow:
     command: run_workflow.py
     input:
+      dir_path:
+        type: string
       tumours:
         type: dict
       donor:

@@ -11,6 +11,7 @@ from utils import get_task_dict, save_output_json
 task_dict = get_task_dict(sys.argv[1])
 cwd = os.getcwd()
 
+dir_path: task_dict.get('input').get('dir_path')
 snv_padding = task_dict.get('input').get('snv-padding')
 tumours = task_dict.get('input').get('tumours')
 donor = task_dict.get('input').get('donor')
@@ -33,6 +34,10 @@ try:
         "class": "File"
     }
 
+    json_input["normalBam"] = {
+        "path": dir_path,
+        "class": "File"
+    }
 
     json_input["tumours"] = []
 
@@ -41,7 +46,7 @@ try:
         json_input["tumours"].append({
             "tumourId": t['tumourId'],
             "bamFileName": t['bamFileName'],
-            "associatedVcfs": t['associatedVcfs']
+            "associatedVcfs": t['associatedVcfs'].keys()
         })
 
     json_input["oxoQScore"] = oxoQScore
@@ -51,18 +56,16 @@ try:
     json_input["indel-padding"] = indel_padding
     json_input["minibamName"] = minibamName
 
-    json_input["inputFileDirectory"] = {}
-    json_input["inputFileDirectory"].append({
-        "path": donor,
-        "location": donor,
+    json_input["inputFileDirectory"] = {
+        "path": dir_path,
+        "location": dir_path,
         "class": "Directory"
-    })
-    json_input["refDataDir"] = {}
-    json_input["refDataDir"].append({
+    }
+    json_input["refDataDir"] = {
         "path": '/ref',
         "location": '/ref',
         "class": "Directory"
-    })
+    }
 
     with open('run.json', 'w') as rj:
         json.dump(json_input, rj)
