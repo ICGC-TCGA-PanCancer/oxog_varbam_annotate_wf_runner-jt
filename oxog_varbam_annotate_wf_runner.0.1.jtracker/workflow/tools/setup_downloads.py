@@ -26,7 +26,7 @@ cwd = os.getcwd()
 """
 donor = task_dict.get('input').get('donor')
 #vcflist = task_dict.get('input').get('vcflist')
-object_id = task_dict.get('input').get('object_id')
+normal_id = task_dict.get('input').get('normal_id')
 tumours= task_dict.get('input').get('tumours')
 
 
