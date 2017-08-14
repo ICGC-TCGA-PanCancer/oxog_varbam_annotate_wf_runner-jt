@@ -62,7 +62,7 @@ workflow:
         tumours: tumours
         oxoQScore: oxoQScore
         out_dir: out_dir
-        snv-padding: snv-padding
+        snv_padding: snv-padding
         sv-padding: sv-padding
         indel-padding: indel-padding
         minibamName: minibamName
@@ -108,7 +108,7 @@ tools:
         type: string
       out_dir:
         type: string
-      snv-padding:
+      snv_padding:
         type: string
       sv-padding:
         type: string
