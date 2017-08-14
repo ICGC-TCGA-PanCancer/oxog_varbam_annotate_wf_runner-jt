@@ -58,7 +58,8 @@ workflow:
     run_workflow:
       tool: run_workflow
       input:
-        dir_path: dir_path
+        ref_data: ref_data@setup
+        dir_path: dir_path@setup
         donor: donor
         tumours: tumours
         oxoQScore: oxoQScore
@@ -96,6 +97,8 @@ tools:
       vcf:
         type: array
       dir_path:
+        type: string
+      ref_path:
         type: string
 
   run_workflow:

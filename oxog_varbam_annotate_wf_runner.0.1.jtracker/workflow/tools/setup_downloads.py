@@ -49,9 +49,11 @@ task_start = int(time.time())
 try:
 
     #ref file download
+    os.mkdir("/ref")
     # if os.path.isfile("public_full9.tar.gz") == False:
     #     urllib.urlretrieve('https://personal.broadinstitute.org/gsaksena/public_full9.tar.gz','public_full9.tar.gz')
     #     print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', '/ref']))
+    refdir = os.path.abspath("/ref")
 
     out_tumour =[]
     out_vcf = []
@@ -95,7 +97,8 @@ output_json = {
     'bam': out_bam,
     'tumour_bam': out_tumour,
     'vcf': out_vcf,
-    'dir_path': dirpath
+    'dir_path': dirpath,
+    'ref_path': refdir
 }
 
 save_output_json(output_json)
