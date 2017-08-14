@@ -56,20 +56,20 @@ try:
     out_tumour =[]
     out_vcf = []
     os.mkdir(donor)
+    dirpath = os.path.abspath(donor)
     #normalBam
     #r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(normal_id.values())[0]), '--output-dir', donor])
     out_bam = str(list(normal_id.values())[0])
 
     #tumour
     for t in tumours:
-        for key, value in t["bamFileName"].iteritems():
-            bamObjID = str(t["bamFileName"][value])
+        bamObjID = str(list(t["bamFileName"].values())[0])
         out_tumour.append(bamObjID)
         #f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', bamObjID, '--output-dir', donor])
 
+    for i in list(t['associatedVcfs'].values()):
+            vcfObjID = str(i)
 
-        for key, value in t['associatedVcfs'].iteritems():
-            vcfObjID = str(t['associatedVcfs'][value])
             out_vcf.append(vcfObjID)
             #k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', vcfObjID, '--output-dir', donor])
 
@@ -95,6 +95,7 @@ output_json = {
     'bam': out_bam,
     'tumour_bam': out_tumour,
     'vcf': out_vcf,
+    'dir_path': dirpath
 }
 
 save_output_json(output_json)
