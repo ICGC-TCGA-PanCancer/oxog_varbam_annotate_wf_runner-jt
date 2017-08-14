@@ -64,12 +64,18 @@ try:
 
     #normalBam
     r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(object_id.values())[0]), '--output-dir', donor])
+    out_bam = str(list(object_id.values())[0])
 
     #tumour
+
+    out_tumour =[]
+    out_vcf = []
     json_input["tumours"] = []
     os.mkdir(donor)
+
     for t in tumours:
-        f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(t["bamFileName"].values())[0]), '--output-dir', donor])
+        out_tumour.append(str(list(t["bamFileName"].values())[0]))
+        #f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(t["bamFileName"].values())[0]), '--output-dir', donor])
         json_input["tumours"].append({
             "tumourId": t['tumourId'],
             "bamFileName": t['bamFileName'],
@@ -77,7 +83,8 @@ try:
         })
 
         for i in list(t['associatedVcfs'].values()):
-            k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(i), '--output-dir', donor])
+            out_vcf.append(str(i))
+            #k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(i), '--output-dir', donor])
 
 
 except Exception, e:
@@ -90,8 +97,9 @@ except Exception, e:
 task_stop = int(time.time())
 
 output_json = {
-    'bam': str(list(object_id.values())[0]),
-    'vcf':
+    'bam': out_bam,
+    'tumour bam': out_tumour,
+    'vcf': out_vcf,
     'json_in': json_input
 }
 
