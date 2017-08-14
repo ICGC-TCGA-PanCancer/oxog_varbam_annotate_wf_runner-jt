@@ -69,7 +69,7 @@ try:
 
 
     with open('run.json', 'w') as rj:
-        json.dumps(json_input, indent=4)
+        json.dump(json_input, indent=4)
 
     r = subprocess.check_output(['cwltool', '--non-strict', 'oxog_varbam_annotate_wf.cwl', 'run.json'])
 except Exception, e:
