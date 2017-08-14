@@ -1,0 +1,22 @@
+{
+  "task": "run_workflow", 
+  "depends_on": [
+    "completed@setup", 
+    "completed@download"
+  ], 
+  "tool": "run_workflow", 
+  "command": "run_workflow.py", 
+  "input": {
+    "minibamName": "minibam.bam", 
+    "out_dir": "/var/spool/cwl/", 
+    "indel-padding": "205", 
+    "json_in": "{{json_in@download}}", 
+    "snv-padding": "200", 
+    "donor": "DO52739", 
+    "oxoQScore": "10.3", 
+    "sv-padding": "10"
+  }, 
+  "runtime": {
+    "docker": null
+  }
+}
