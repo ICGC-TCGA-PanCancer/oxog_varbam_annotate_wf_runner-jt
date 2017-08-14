@@ -88,6 +88,12 @@ tools:
       tumours:
         type: array
     output:
+      bam:
+        type: string
+      tumour_bam:
+        type: array
+      vcf:
+        type: array
       json_in:
         type: dict
 

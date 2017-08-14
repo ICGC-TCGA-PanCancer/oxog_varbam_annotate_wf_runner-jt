@@ -98,7 +98,7 @@ task_stop = int(time.time())
 
 output_json = {
     'bam': out_bam,
-    'tumour bam': out_tumour,
+    'tumour_bam': out_tumour,
     'vcf': out_vcf,
     'json_in': json_input
 }
