@@ -11,11 +11,11 @@ from utils import get_task_dict, save_output_json
 task_dict = get_task_dict(sys.argv[1])
 cwd = os.getcwd()
 
+snv-padding = task_dict.get('input').get('snv-padding')
 tumours = task_dict.get('input').get('tumours')
 donor = task_dict.get('input').get('donor')
 oxoQScore = task_dict.get('input').get('oxoQScore')
 out_dir = task_dict.get('input').get('out_dir')
-snv-paddingg = task_dict.get('input').get('snv-padding')
 sv-padding = task_dict.get('input').get('sv-padding')
 indel-padding = task_dict.get('input').get('indel-padding')
 minibamName = task_dict.get('input').get('minibamName')
