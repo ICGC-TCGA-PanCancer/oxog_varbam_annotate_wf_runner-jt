@@ -90,7 +90,8 @@ except Exception, e:
 task_stop = int(time.time())
 
 output_json = {
-    'file': os.path.join(cwd, file_name),
+    'bam': str(list(object_id.values())[0]),
+    'vcf':
     'json_in': json_input
 }
 
