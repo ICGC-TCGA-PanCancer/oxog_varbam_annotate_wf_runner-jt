@@ -11,7 +11,7 @@ from utils import get_task_dict, save_output_json
 task_dict = get_task_dict(sys.argv[1])
 cwd = os.getcwd()
 
-dir_path: task_dict.get('input').get('dir_path')
+dir_path= task_dict.get('input').get('dir_path')
 snv_padding = task_dict.get('input').get('snv-padding')
 tumours = task_dict.get('input').get('tumours')
 donor = task_dict.get('input').get('donor')
