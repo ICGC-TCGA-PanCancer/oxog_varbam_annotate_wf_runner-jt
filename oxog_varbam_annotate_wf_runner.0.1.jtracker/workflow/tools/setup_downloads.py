@@ -75,11 +75,11 @@ try:
 
     #only for test get rid of
     for t in tumours:
-        open((str(list(t["bamFileName"].keys())[0])), donor + '/a').close()
+        open((str(list(donor + '/'+ t["bamFileName"].keys())[0])), 'a').close()
         #f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(t["bamFileName"].values())[0]), '--output-dir', donor])
 
 
-        for i in list(t['associatedVcfs'].keys()):
+        for i in list(donor + '/'+ t['associatedVcfs'].keys()):
             open((str(i)), donor + '/a').close()
 
 except Exception, e:
