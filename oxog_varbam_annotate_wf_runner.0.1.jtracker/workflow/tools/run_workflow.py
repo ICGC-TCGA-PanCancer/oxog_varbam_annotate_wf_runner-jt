@@ -46,7 +46,7 @@ try:
 
     json_input["oxoQScore"] = oxoQScore
     json_input["out_dir"] = out_dir
-    json_input["snv-padding"] = snv_paddingg
+    json_input["snv-padding"] = snv_padding
     json_input["sv-padding"] = sv_padding
     json_input["indel-padding"] = indel_padding
     json_input["minibamName"] = minibamName
