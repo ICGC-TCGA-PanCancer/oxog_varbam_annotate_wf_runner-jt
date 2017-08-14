@@ -67,7 +67,7 @@ try:
         out_tumour.append(bamObjID)
         #f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', bamObjID, '--output-dir', donor])
 
-    for i in list(t['associatedVcfs'].values()):
+        for i in list(t['associatedVcfs'].values()):
             vcfObjID = str(i)
 
             out_vcf.append(vcfObjID)
