@@ -20,8 +20,8 @@ cwd = os.getcwd()
         type: array
       normal_id:
         type: string
-      tumor_id:
-        type: array
+      tumours:
+        type: dict
 
 """
 donor = task_dict.get('input').get('donor')
@@ -63,21 +63,21 @@ try:
         print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', '/ref']))
 
     #normalBam
-    r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[object_id], '--output-dir', donor])
+    r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(object_id.values())[0]), '--output-dir', donor])
 
     #tumour
     json_input["tumours"] = []
     os.mkdir(donor)
     for t in tumours:
-        f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[t['bamFileName']], '--output-dir', donor])
+        f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(t["bamFileName"].values())[0]), '--output-dir', donor])
         json_input["tumours"].append({
             "tumourId": t['tumourId'],
             "bamFileName": t['bamFileName'],
             "associatedVcfs": t['associatedVcfs']
         })
 
-        for i in t['associatedVcfs']:
-            k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', objid[i], '--output-dir', donor])
+        for i in list(t['associatedVcfs'].values()):
+            k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(i), '--output-dir', donor])
 
 
 except Exception, e:
