@@ -3,6 +3,7 @@
     "vcfdir": "DO52739",
     "refFile": "Homo_sapiens_assembly19.fasta",
     "donor": "DO52739",
+    "refUrl": "https://personal.broadinstitute.org/gsaksena/public_full9.tar.gz",
     "normalBam":
     {
       "6a40a6df68474d9357bacc988ea3e30e.bam": "0a84c77a-510c-5d5e-904b-723464025c76"

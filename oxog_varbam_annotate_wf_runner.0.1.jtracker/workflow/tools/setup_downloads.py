@@ -25,7 +25,7 @@ cwd = os.getcwd()
 
 """
 donor = task_dict.get('input').get('donor')
-#vcflist = task_dict.get('input').get('vcflist')
+refUrl = task_dict.get('input').get('refUrl')
 normal_id = task_dict.get('input').get('normal_id')
 tumours= task_dict.get('input').get('tumours')
 
@@ -59,7 +59,7 @@ try:
     if os.path.isfile("public_full9.tar.gz") == False:
         prog = 0
 
-        urllib.urlretrieve('https://personal.broadinstitute.org/gsaksena/public_full9.tar.gz','public_full9.tar.gz', reporthook=report)
+        urllib.urlretrieve(refUrl,'public_full9.tar.gz', reporthook=report)
         print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', '/ref']))
     refdir = os.path.abspath("ref")
 

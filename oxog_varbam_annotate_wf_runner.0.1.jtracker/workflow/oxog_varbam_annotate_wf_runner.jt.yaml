@@ -32,6 +32,8 @@ workflow:
       type: string
     minibamName:
       type: string
+    refUrl:
+      type: string
     tumours:
       type: array
       items:
@@ -53,6 +55,7 @@ workflow:
         donor: donor
         tumours: tumours
         normal_id: normalBam
+        refUrl: refUrl
       depends_on:
 
     run_workflow:
@@ -89,6 +92,8 @@ tools:
         type: dict
       tumours:
         type: array
+      refUrl:
+        type: string
     output:
       bam:
         type: string
