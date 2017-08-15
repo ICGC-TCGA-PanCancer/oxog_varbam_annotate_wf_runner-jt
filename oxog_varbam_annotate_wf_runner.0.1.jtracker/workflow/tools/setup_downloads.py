@@ -28,7 +28,7 @@ donor = task_dict.get('input').get('donor')
 refUrl = task_dict.get('input').get('refUrl')
 normal_id = task_dict.get('input').get('normal_id')
 tumours= task_dict.get('input').get('tumours')
-
+refdone = False
 
 #temp hard code (obj ids may not line up correctly just for test)
 objid = {'6a40a6df68474d9357bacc988ea3e30e.bam':'0a84c77a-510c-5d5e-904b-723464025c76',
@@ -50,7 +50,9 @@ def report(block_no, block_size, file_size):
     global prog
     prog += block_size
     rate = prog//file_size
-    print("Downloaded %i bytes of %i. Progress : %i" % (prog, file_size, rate))
+    print("Downloaded %i bytes of %i. Progress : %i%" % (prog, file_size, rate))
+    if rate >= 1:
+        refdone = True
 
 try:
 
@@ -60,7 +62,8 @@ try:
         prog = 0
 
         urllib.urlretrieve(refUrl,'public_full9.tar.gz', reporthook=report)
-        print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', '/ref']))
+        if refdone == True:
+            print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', '/ref']))
     refdir = os.path.abspath("ref")
 
     out_tumour =[]

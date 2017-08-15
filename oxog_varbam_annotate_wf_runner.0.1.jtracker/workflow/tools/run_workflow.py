@@ -72,7 +72,7 @@ try:
     with open('run.json', 'w') as rj:
         json.dump(json_input, rj, indent=4)
 
-    r = subprocess.check_output(['cwltool', '--non-strict', 'oxog_varbam_annotate_wf.cwl', 'run.json'])
+    r = subprocess.check_output(['dockstore', '--script', '--debug', 'workflow', 'launch', '--descriptor', 'cwl', '--local-entry', '--entry', './oxog_varbam_annotate_wf.cwl', '--json', 'run.json'])
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
     sys.exit(1)  # task failed
