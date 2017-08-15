@@ -36,8 +36,8 @@ def report(block_no, block_size, file_size):
     global prog
     prog += block_size
     rate = (prog * 100)//file_size
-    print(subprocess.check_output(["echo", "Downloaded %i bytes of %i. Progress : %i%%" % (prog, file_size, rate)])
-    sys.stdout.flush()
+    print(subprocess.check_output(["echo", "Downloaded %i bytes of %i. Progress : %i%%" % (prog, file_size, rate)]))
+    #sys.stdout.flush()
     if rate >= 100:
         refdone = True
 
