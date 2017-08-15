@@ -46,12 +46,20 @@ objid = {'6a40a6df68474d9357bacc988ea3e30e.bam':'0a84c77a-510c-5d5e-904b-7234640
 
 task_start = int(time.time())
 
+def report(block_size, file_size):
+    global prog
+    prog += block_size
+    rate = prog//file_size
+    print("Downloaded %i bytes of %i. Progress : %i" % (prog, file_size, rate))
+
 try:
 
     #ref file download
     os.mkdir("ref")
     if os.path.isfile("public_full9.tar.gz") == False:
-        urllib.urlretrieve('https://personal.broadinstitute.org/gsaksena/public_full9.tar.gz','public_full9.tar.gz')
+        prog = 0
+
+        urllib.urlretrieve('https://personal.broadinstitute.org/gsaksena/public_full9.tar.gz','public_full9.tar.gz', reporthook=report)
         print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', '/ref']))
     refdir = os.path.abspath("ref")
 
