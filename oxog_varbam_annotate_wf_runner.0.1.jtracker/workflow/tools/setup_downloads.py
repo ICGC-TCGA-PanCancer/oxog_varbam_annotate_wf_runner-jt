@@ -46,7 +46,7 @@ objid = {'6a40a6df68474d9357bacc988ea3e30e.bam':'0a84c77a-510c-5d5e-904b-7234640
 
 task_start = int(time.time())
 
-def report(block_size, file_size):
+def report(block_no, block_size, file_size):
     global prog
     prog += block_size
     rate = prog//file_size
