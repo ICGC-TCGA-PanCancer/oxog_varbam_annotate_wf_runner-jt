@@ -36,7 +36,7 @@ def report(block_no, block_size, file_size):
     global prog
     prog += block_size
     rate = (prog * 100)//file_size
-    print("Downloaded %i bytes of %i. Progress : %i%" % (prog, file_size, rate))
+    print("Downloaded %i bytes of %i. Progress : %i" % (prog, file_size, rate))
     if rate >= 100:
         refdone = True
 
