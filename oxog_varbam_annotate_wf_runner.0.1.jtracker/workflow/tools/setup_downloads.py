@@ -49,9 +49,9 @@ task_start = int(time.time())
 def report(block_no, block_size, file_size):
     global prog
     prog += block_size
-    rate = prog//file_size
+    rate = (prog * 100)//file_size
     print("Downloaded %i bytes of %i. Progress : %i%" % (prog, file_size, rate))
-    if rate >= 1:
+    if rate >= 100:
         refdone = True
 
 try:
@@ -60,10 +60,10 @@ try:
     os.mkdir("ref")
     if os.path.isfile("public_full9.tar.gz") == False:
         prog = 0
-
         urllib.urlretrieve(refUrl,'public_full9.tar.gz', reporthook=report)
         if refdone == True:
             print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', '/ref']))
+
     refdir = os.path.abspath("ref")
 
     out_tumour =[]
