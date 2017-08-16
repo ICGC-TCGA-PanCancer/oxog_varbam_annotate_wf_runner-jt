@@ -68,7 +68,7 @@ try:
         bamNames = str(list(t["bamFileName"].keys())[0])
         out_tumour.append(bamNames)
         f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', bamObjID, '--output-dir', donor])
-        os.rename(os.path.join(donor, bamObjID), os.path.join(donor, bamNames)
+        os.rename(os.path.join(donor, bamObjID), os.path.join(donor, bamNames))
 
         for i in list(t['associatedVcfs'].keys()):
             vcfKey = str(i)
