@@ -50,8 +50,7 @@ try:
         os.mkdir("ref")
         prog = 0
         urllib.urlretrieve(refUrl,'public_full9.tar.gz', reporthook=report)
-        if refdone == True:
-            print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', 'ref']))
+        print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', 'ref']))
 
     refdir = os.path.abspath("ref")
 
@@ -69,14 +68,14 @@ try:
         bamNames = str(list(t["bamFileName"].keys())[0])
         out_tumour.append(bamNames)
         f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', bamObjID, '--output-dir', donor])
-        os.rename(bamObjID, bamNames)
+        os.rename(os.path.join(donor, bamObjID), os.path.join(donor, bamNames)
 
         for i in list(t['associatedVcfs'].keys()):
             vcfKey = str(i)
             vcfObjID = t['associatedVcfs'].get(vcfKey)
             out_vcf.append(vcfObjID)
             k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', vcfObjID, '--output-dir', donor])
-            os.rename()
+            os.rename(os.path.join(donor, vcfObjID), os.path.join(donor, vcfKey))
     # #only for test get rid of
     # for t in tumours:
     #     open(donor + '/' + (str(list(t["bamFileName"].keys())[0])), 'a').close()
