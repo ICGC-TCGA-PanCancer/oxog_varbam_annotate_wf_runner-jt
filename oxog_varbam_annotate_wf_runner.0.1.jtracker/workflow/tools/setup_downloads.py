@@ -51,7 +51,7 @@ try:
         prog = 0
         urllib.urlretrieve(refUrl,'public_full9.tar.gz', reporthook=report)
         if refdone == True:
-        print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', 'ref']))
+            print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', 'ref']))
 
     refdir = os.path.abspath("ref")
 
