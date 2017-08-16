@@ -43,14 +43,14 @@ def report(block_no, block_size, file_size):
 
 try:
 
-    #ref file download
-    if os.path.isfile("public_full9.tar.gz") == False:
-        #current_dir = os.path.dirname(os.path.realpath(__file__))
-        #target_dir = os.path.sep.join(current_dir.split(os.path.sep)[:-2])
-        os.mkdir("ref")
-        prog = 0
-        urllib.urlretrieve(refUrl,'public_full9.tar.gz', reporthook=report)
-        print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', 'ref']))
+    # #ref file download
+    # if os.path.isfile("public_full9.tar.gz") == False:
+    #     #current_dir = os.path.dirname(os.path.realpath(__file__))
+    #     #target_dir = os.path.sep.join(current_dir.split(os.path.sep)[:-2])
+    #     os.mkdir("ref")
+    #     prog = 0
+    #     urllib.urlretrieve(refUrl,'public_full9.tar.gz', reporthook=report)
+    #     print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', 'ref']))
 
     refdir = os.path.abspath("ref")
 
