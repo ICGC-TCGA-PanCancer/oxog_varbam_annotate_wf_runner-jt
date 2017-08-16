@@ -51,7 +51,7 @@ try:
         prog = 0
         urllib.urlretrieve(refUrl,'public_full9.tar.gz', reporthook=report)
         #if refdone == True:
-        print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', '/ref']))
+        print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', 'ref']))
 
     refdir = os.path.abspath("ref")
 
@@ -60,7 +60,7 @@ try:
     os.mkdir(donor)
     dirpath = os.path.abspath(donor)
     #normalBam
-    #r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(normal_id.values())[0]), '--output-dir', donor])
+    r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(normal_id.values())[0]), '--output-dir', donor])
     out_bam = str(list(normal_id.keys())[0])
 
     #tumour
@@ -74,7 +74,7 @@ try:
         for i in list(t['associatedVcfs'].values()):
             vcfObjID = str(i)
             out_vcf.append(vcfObjID)
-            # = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', vcfObjID, '--output-dir', donor])
+            k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', vcfObjID, '--output-dir', donor])
 
     #only for test get rid of
     for t in tumours:
