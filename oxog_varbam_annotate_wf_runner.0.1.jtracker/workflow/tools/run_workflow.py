@@ -73,10 +73,13 @@ try:
         json.dump(json_input, rj, indent=4)
     rj.close()
 
+    cwd = os.getcwd()
     print(subprocess.check_output(['git', 'clone', 'https://github.com/ICGC-TCGA-PanCancer/OxoG-Dockstore-Tools.git']))
-    print(subprocess.check_output(['cd', 'OxoG-Dockstore-Tools']))
+    os.chdir(os.path.join(cwd,'OxoG-Dockstore-Tools'))
+    #print(subprocess.check_output(['cd', 'OxoG-Dockstore-Tools']))
     print(subprocess.check_output(['git', 'submodule', 'update', '--init', '--recursive']))
-    print(subprocess.check_output(['cd', '..']))
+    os.chdir(cwd)
+    #print(subprocess.check_output(['cd', '..']))
     print(subprocess.check_output(['cwltool', 'OxoG-Dockstore-Tools/oxog_varbam_annotate_wf.cwl', 'run.json']))
 
     # r = subprocess.check_output(['dockstore', '--script', '--debug', 'workflow', 'launch', '--descriptor', 'cwl', '--local-entry', '--entry', './oxog_varbam_annotate_wf.cwl', '--json', 'run.json'])
