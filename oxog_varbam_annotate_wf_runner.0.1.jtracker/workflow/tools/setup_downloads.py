@@ -68,14 +68,16 @@ try:
         bamNames = str(list(t["bamFileName"].keys())[0])
         out_tumour.append(bamNames)
         f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', bamObjID, '--output-dir', donor])
-        os.rename(os.path.join(donor, bamObjID), os.path.join(donor, bamNames))
+        if os.isfile(os.path.join(donor, bamObjID)) and os.isfile(os.path.join(donor, bamNames)) == False:
+            os.rename(os.path.join(donor, bamObjID), os.path.join(donor, bamNames))
 
         for i in list(t['associatedVcfs'].keys()):
             vcfKey = str(i)
             vcfObjID = t['associatedVcfs'].get(vcfKey)
             out_vcf.append(vcfObjID)
             k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', vcfObjID, '--output-dir', donor])
-            os.rename(os.path.join(donor, vcfObjID), os.path.join(donor, vcfKey))
+            if os.isfile(os.path.join(donor, vcfObjID)) and os.isfile(os.path.join(donor, vcfKey)) == False:
+                os.rename(os.path.join(donor, vcfObjID), os.path.join(donor, vcfKey))
     # #only for test get rid of
     # for t in tumours:
     #     open(donor + '/' + (str(list(t["bamFileName"].keys())[0])), 'a').close()
