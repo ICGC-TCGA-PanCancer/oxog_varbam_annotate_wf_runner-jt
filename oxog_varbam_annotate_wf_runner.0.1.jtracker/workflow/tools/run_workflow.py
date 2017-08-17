@@ -77,10 +77,8 @@ try:
     print(subprocess.check_output(['cd', 'OxoG-Dockstore-Tools'])
     print(subprocess.check_output(['git', 'submodule', 'update', '--init', '--recursive'])
     print(subprocess.check_output(['cd', '..'])
-    r = subprocess.check_output(['cwltool', 'OxoG-Dockstore-Tools/oxog_varbam_annotate_wf.cwl', 'run.json'])
+    print(subprocess.check_output(['cwltool', 'OxoG-Dockstore-Tools/oxog_varbam_annotate_wf.cwl', 'run.json']))
 
-
-    # print(subprocess.check_output([git clone https://github.com/ICGC-TCGA-PanCancer/OxoG-Dockstore-Tools.git]))
     # r = subprocess.check_output(['dockstore', '--script', '--debug', 'workflow', 'launch', '--descriptor', 'cwl', '--local-entry', '--entry', './oxog_varbam_annotate_wf.cwl', '--json', 'run.json'])
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
