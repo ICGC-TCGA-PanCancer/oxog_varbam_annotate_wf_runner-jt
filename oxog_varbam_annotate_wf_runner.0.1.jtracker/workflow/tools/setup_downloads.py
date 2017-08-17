@@ -59,17 +59,17 @@ try:
     os.mkdir(donor)
     dirpath = os.path.abspath(donor)
     #normalBam
-    r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(normal_id.values())[0]), '--output-dir', donor])
-    out_bam = str(list(normal_id.keys())[0])
+    # r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(normal_id.values())[0]), '--output-dir', donor])
+    # out_bam = str(list(normal_id.keys())[0])
 
     #tumour
     for t in tumours:
         bamObjID = str(list(t["bamFileName"].values())[0])
         bamNames = str(list(t["bamFileName"].keys())[0])
         out_tumour.append(bamNames)
-        f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', bamObjID, '--output-dir', donor])
-        if os.isfile(os.path.join(donor, bamObjID)) and os.isfile(os.path.join(donor, bamNames)) == False:
-            os.rename(os.path.join(donor, bamObjID), os.path.join(donor, bamNames))
+        # f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', bamObjID, '--output-dir', donor])
+        # if os.isfile(os.path.join(donor, bamObjID)) and os.isfile(os.path.join(donor, bamNames)) == False:
+        #     os.rename(os.path.join(donor, bamObjID), os.path.join(donor, bamNames))
 
         for i in list(t['associatedVcfs'].keys()):
             vcfKey = str(i)
