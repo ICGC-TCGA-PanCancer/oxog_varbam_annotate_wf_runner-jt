@@ -43,14 +43,14 @@ def report(block_no, block_size, file_size):
 
 try:
 
-    # #ref file download
-    # if os.path.isfile("public_full9.tar.gz") == False:
-    #     #current_dir = os.path.dirname(os.path.realpath(__file__))
-    #     #target_dir = os.path.sep.join(current_dir.split(os.path.sep)[:-2])
-    #     os.mkdir("ref")
-    #     prog = 0
-    #     urllib.urlretrieve(refUrl,'public_full9.tar.gz', reporthook=report)
-    #     print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', 'ref']))
+    #ref file download
+    if os.path.isfile("public_full9.tar.gz") == False:
+        #current_dir = os.path.dirname(os.path.realpath(__file__))
+        #target_dir = os.path.sep.join(current_dir.split(os.path.sep)[:-2])
+        os.mkdir("ref")
+        prog = 0
+        urllib.urlretrieve(refUrl,'public_full9.tar.gz', reporthook=report)
+        print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', 'ref']))
 
     refdir = os.path.abspath("ref")
 
@@ -59,32 +59,33 @@ try:
     os.mkdir(donor)
     dirpath = os.path.abspath(donor)
     #normalBam
-    #r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(normal_id.values())[0]), '--output-dir', donor])
+    r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(normal_id.values())[0]), '--output-dir', donor])
     out_bam = str(list(normal_id.keys())[0])
 
     #tumour
-    # for t in tumours:
-    #     bamObjID = str(list(t["bamFileName"].values())[0])
-    #     bamNames = str(list(t["bamFileName"].keys())[0])
-    #     out_tumour.append(bamNames)
-    #     f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', bamObjID, '--output-dir', donor])
-    #     if os.path.isfile(os.path.join(donor, bamObjID)) and os.path.isfile(os.path.join(donor, bamNames)) == False:
-    #         os.rename(os.path.join(donor, bamObjID), os.path.join(donor, bamNames))
-    #
-    #     for i in list(t['associatedVcfs'].keys()):
-    #         vcfKey = str(i)
-    #         vcfObjID = t['associatedVcfs'].get(vcfKey)
-    #         out_vcf.append(vcfObjID)
-    #         k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', vcfObjID, '--output-dir', donor])
-    #         if os.path.isfile(os.path.join(donor, vcfObjID)) and os.path.isfile(os.path.join(donor, vcfKey)) == False:
-    #             os.rename(os.path.join(donor, vcfObjID), os.path.join(donor, vcfKey))
-    #only for test get rid of
-    open(donor + '/' + str(list(normal_id.values())[0]), 'a').close()
     for t in tumours:
-        open(donor + '/' + (str(list(t["bamFileName"].keys())[0])), 'a').close()
+        bamObjID = str(list(t["bamFileName"].values())[0])
+        bamNames = str(list(t["bamFileName"].keys())[0])
+        out_tumour.append(bamNames)
+        f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', bamObjID, '--output-dir', donor])
+        if os.path.isfile(os.path.join(donor, bamObjID)) and os.path.isfile(os.path.join(donor, bamNames)) == False:
+            os.rename(os.path.join(donor, bamObjID), os.path.join(donor, bamNames))
 
         for i in list(t['associatedVcfs'].keys()):
-            open(donor + '/' + (str(i)), 'a').close()
+            vcfKey = str(i)
+            vcfObjID = t['associatedVcfs'].get(vcfKey)
+            out_vcf.append(vcfObjID)
+            k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', vcfObjID, '--output-dir', donor])
+            if os.path.isfile(os.path.join(donor, vcfObjID)) and os.path.isfile(os.path.join(donor, vcfKey)) == False:
+                os.rename(os.path.join(donor, vcfObjID), os.path.join(donor, vcfKey))
+
+    #only for test uses
+    # open(donor + '/' + str(list(normal_id.values())[0]), 'a').close()
+    # for t in tumours:
+    #     open(donor + '/' + (str(list(t["bamFileName"].keys())[0])), 'a').close()
+    #
+    #     for i in list(t['associatedVcfs'].keys()):
+    #         open(donor + '/' + (str(i)), 'a').close()
 
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
