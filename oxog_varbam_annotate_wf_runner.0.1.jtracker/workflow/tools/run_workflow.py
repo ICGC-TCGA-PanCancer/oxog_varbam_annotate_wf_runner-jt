@@ -11,7 +11,8 @@ from utils import get_task_dict, save_output_json
 task_dict = get_task_dict(sys.argv[1])
 cwd = os.getcwd()
 
-ref_data = task_dict.get('input').get('ref_path')
+normalBam = task_dict.get('input').get('normalBam')
+ref_path = task_dict.get('input').get('ref_path')
 dir_path = task_dict.get('input').get('dir_path')
 snv_padding = task_dict.get('input').get('snv-padding')
 tumours = task_dict.get('input').get('tumours')
@@ -27,7 +28,7 @@ task_start = int(time.time())
 try:
     json_input= {}
     json_input["vcfdir"] = {
-        "path": donor,
+        "path": dir_path,
         "class": "Directory"
     }
     json_input["refFile"] = {
@@ -36,7 +37,7 @@ try:
     }
 
     json_input["normalBam"] = {
-        "path": dir_path,
+        "path": os.join(dir_path, normalBam),
         "class": "File"
     }
 
@@ -47,7 +48,7 @@ try:
         json_input["tumours"].append({
             "tumourId": t['tumourId'],
             "bamFileName": t['bamFileName'],
-            "associatedVcfs": t['associatedVcfs'].keys()
+            "associatedVcfs": str(t['associatedVcfs'].keys()[0])
         })
 
     json_input["oxoQScore"] = oxoQScore
@@ -63,8 +64,8 @@ try:
         "class": "Directory"
     }
     json_input["refDataDir"] = {
-        "path": ref_data,
-        "location": ref_data,
+        "path": ref_path,
+        "location": ref_path,
         "class": "Directory"
     }
 
