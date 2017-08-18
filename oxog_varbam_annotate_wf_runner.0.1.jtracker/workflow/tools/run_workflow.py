@@ -11,6 +11,7 @@ from utils import get_task_dict, save_output_json
 task_dict = get_task_dict(sys.argv[1])
 cwd = os.getcwd()
 
+refFile = task_dict.get('input').get('refFile')
 normalBam = task_dict.get('input').get('normalBam')
 ref_path = task_dict.get('input').get('ref_path')
 dir_path = task_dict.get('input').get('dir_path')
@@ -32,7 +33,7 @@ try:
         "class": "Directory"
     }
     json_input["refFile"] = {
-        "path": ref_path + "/public" ,
+        "path": ref_path + "/public/" + refFile,
         "class": "File"
     }
 
@@ -48,7 +49,7 @@ try:
         json_input["tumours"].append({
             "tumourId": t['tumourId'],
             "bamFileName": t['bamFileName'],
-            "associatedVcfs": str(t['associatedVcfs'].keys()[0])
+            "associatedVcfs": t['associatedVcfs'].keys()
         })
 
     json_input["oxoQScore"] = oxoQScore
@@ -81,7 +82,8 @@ try:
     print(subprocess.check_output(['git', 'submodule', 'update', '--init', '--recursive']))
     os.chdir(cwd)
     #print(subprocess.check_output(['cd', '..']))
-    print(subprocess.check_output(['dockstore', '--script', 'workflow', 'launch', '--local-entry', 'OxoG-Dockstore-Tools/oxog_varbam_annotate_wf.cwl', '--json', 'run.json']))
+    #print(subprocess.check_output(['dockstore', '--script', 'workflow', 'launch', '--local-entry', 'OxoG-Dockstore-Tools/oxog_varbam_annotate_wf.cwl', '--json', 'run.json']))
+    # cwltool --non-strict --relax-path-checks OxoG-Dockstore-Tools/oxog_varbam_annotate_wf.cwl run.json
 
     # r = subprocess.check_output(['dockstore', '--script', '--debug', 'workflow', 'launch', '--descriptor', 'cwl', '--local-entry', '--entry', './oxog_varbam_annotate_wf.cwl', '--json', 'run.json'])
 except Exception, e:
