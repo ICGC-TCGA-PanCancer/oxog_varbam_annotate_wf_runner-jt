@@ -61,6 +61,7 @@ workflow:
     run_workflow:
       tool: run_workflow
       input:
+        refFile: refFile
         normalBam: normalBam
         ref_path: ref_path@setup
         dir_path: dir_path@setup
@@ -110,6 +111,8 @@ tools:
   run_workflow:
     command: run_workflow.py
     input:
+      refFile:
+        type: string
       normalBam:
         type: string
       ref_path:
