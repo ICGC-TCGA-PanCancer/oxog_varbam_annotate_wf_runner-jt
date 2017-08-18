@@ -32,12 +32,12 @@ try:
         "class": "Directory"
     }
     json_input["refFile"] = {
-        "path": os.path.join(ref_path, "public") ,
+        "path": ref_path + "/public" ,
         "class": "File"
     }
 
     json_input["normalBam"] = {
-        "path": os.path.join(dir_path, normalBam),
+        "path": dir_path + '/' + normalBam,
         "class": "File"
     }
 
