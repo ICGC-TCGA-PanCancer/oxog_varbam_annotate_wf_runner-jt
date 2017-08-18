@@ -48,7 +48,7 @@ try:
     for t in tumours:
         json_input["tumours"].append({
             "tumourId": t['tumourId'],
-            "bamFileName": t['bamFileName'],
+            "bamFileName": str(t['bamFileName'].keys()[0]),
             "associatedVcfs": t['associatedVcfs'].keys()
         })
 
@@ -65,8 +65,8 @@ try:
         "class": "Directory"
     }
     json_input["refDataDir"] = {
-        "path": ref_path,
-        "location": ref_path,
+        "path": ref_path + "/public",
+        "location": ref_path + "/public",
         "class": "Directory"
     }
 
