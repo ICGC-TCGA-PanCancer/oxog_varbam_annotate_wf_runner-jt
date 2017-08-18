@@ -61,7 +61,8 @@ workflow:
     run_workflow:
       tool: run_workflow
       input:
-        ref_data: ref_data@setup
+        normalBam: normalBam
+        ref_data: ref_path@setup
         dir_path: dir_path@setup
         donor: donor
         tumours: tumours
@@ -109,6 +110,8 @@ tools:
   run_workflow:
     command: run_workflow.py
     input:
+      normalBam:
+        type: string
       ref_path:
         type: string
       dir_path:
