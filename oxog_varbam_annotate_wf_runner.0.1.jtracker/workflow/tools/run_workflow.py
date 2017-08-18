@@ -37,7 +37,7 @@ try:
     }
 
     json_input["normalBam"] = {
-        "path": dir_path + '/' + normalBam,
+        "path": dir_path + '/' + normalBam.keys()[0],
         "class": "File"
     }
 
