@@ -62,7 +62,7 @@ workflow:
       tool: run_workflow
       input:
         normalBam: normalBam
-        ref_data: ref_path@setup
+        ref_path: ref_path@setup
         dir_path: dir_path@setup
         donor: donor
         tumours: tumours
