@@ -78,12 +78,10 @@ try:
     cwd = os.getcwd()
     print(subprocess.check_output(['git', 'clone', 'https://github.com/ICGC-TCGA-PanCancer/OxoG-Dockstore-Tools.git']))
     os.chdir(os.path.join(cwd,'OxoG-Dockstore-Tools'))
-    #print(subprocess.check_output(['cd', 'OxoG-Dockstore-Tools']))
     print(subprocess.check_output(['git', 'submodule', 'update', '--init', '--recursive']))
     os.chdir(cwd)
-    #print(subprocess.check_output(['cd', '..']))
-    #print(subprocess.check_output(['dockstore', '--script', 'workflow', 'launch', '--local-entry', 'OxoG-Dockstore-Tools/oxog_varbam_annotate_wf.cwl', '--json', 'run.json']))
-    # cwltool --non-strict --relax-path-checks OxoG-Dockstore-Tools/oxog_varbam_annotate_wf.cwl run.json
+    print(subprocess.check_output(['cwltool', '--non-strict', '--relax-path-checks', 'OxoG-Dockstore-Tools/oxog_varbam_annotate_wf.cwl', 'run.json']))
+    cwltool --non-strict --relax-path-checks OxoG-Dockstore-Tools/oxog_varbam_annotate_wf.cwl run.json
 
     # r = subprocess.check_output(['dockstore', '--script', '--debug', 'workflow', 'launch', '--descriptor', 'cwl', '--local-entry', '--entry', './oxog_varbam_annotate_wf.cwl', '--json', 'run.json'])
 except Exception, e:
