@@ -32,12 +32,12 @@ try:
         "class": "Directory"
     }
     json_input["refFile"] = {
-        "path": "Homo_sapiens_assembly19.fasta" ,
+        "path": os.path.join(ref_path, "public") ,
         "class": "File"
     }
 
     json_input["normalBam"] = {
-        "path": os.join(dir_path, normalBam),
+        "path": os.path.join(dir_path, normalBam),
         "class": "File"
     }
 
