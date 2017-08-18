@@ -87,16 +87,12 @@ try:
         bamNames = str(list(t["bamFileName"].keys())[0])
         out_tumour.append(bamNames)
         open(donor + '/' + (str(list(t["bamFileName"].keys())[0])), 'a').close()
-        if os.path.isfile(os.path.join(donor, bamObjID)) and os.path.isfile(os.path.join(donor, bamNames)) == False:
-            os.rename(os.path.join(donor, bamObjID), os.path.join(donor, bamNames))
 
         for i in list(t['associatedVcfs'].keys()):
             vcfKey = str(i)
             vcfObjID = t['associatedVcfs'].get(vcfKey)
             out_vcf.append(vcfObjID)
             open(donor + '/' + (str(i)), 'a').close()
-            if os.path.isfile(os.path.join(donor, vcfObjID)) and os.path.isfile(os.path.join(donor, vcfKey)) == False:
-                os.rename(os.path.join(donor, vcfObjID), os.path.join(donor, vcfKey))
 
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
