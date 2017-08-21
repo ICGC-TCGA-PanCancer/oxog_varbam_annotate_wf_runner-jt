@@ -99,7 +99,7 @@ except Exception, e:
 
     os.remove("public_full9.tar.gz")
 
-    if os.path.isdir("ref")::
+    if os.path.isdir("ref"):
         shutil.rmtree("ref")
 
     shutil.rmtree(donor)

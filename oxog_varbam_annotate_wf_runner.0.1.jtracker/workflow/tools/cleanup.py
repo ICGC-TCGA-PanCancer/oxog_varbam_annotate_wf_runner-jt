@@ -15,8 +15,13 @@ cwd = os.getcwd()
 task_start = int(time.time())
 
 try:
-    donor = '/' + donor
+    os.remove("public_full9.tar.gz")
+
+    if os.path.isdir("ref"):
+        shutil.rmtree("ref")
+
     shutil.rmtree(donor)
+    shutil.rmtree("OxoG-Dockstore-Tools")
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
     sys.exit(1)  # task failed
