@@ -79,6 +79,8 @@ workflow:
     cleanup:
       tool: cleanup
       input:
+        ref_path: ref_path@setup
+        dir_path: dir_path@setup
         donor: donor
       depends_on:
       - completed@run_workflow
@@ -139,5 +141,9 @@ tools:
   cleanup:
     command: cleanup.py
     input:
+      dir_path:
+        type: string
+      ref_path:
+        type: string
       donor:
         type: string

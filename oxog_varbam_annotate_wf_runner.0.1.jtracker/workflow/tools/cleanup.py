@@ -12,15 +12,17 @@ from utils import get_task_dict, save_output_json
 task_dict = get_task_dict(sys.argv[1])
 cwd = os.getcwd()
 
+ref_path = task_dict.get('input').get('ref_path')
+dir_path = task_dict.get('input').get('dir_path')
+donor = task_dict.get('input').get('donor')
+
 task_start = int(time.time())
 
 try:
-    os.remove("public_full9.tar.gz")
+    if os.path.isdir(ref_path):
+        shutil.rmtree(ref_path)
 
-    if os.path.isdir("ref"):
-        shutil.rmtree("ref")
-
-    shutil.rmtree(donor)
+    shutil.rmtree(dir_path)
     shutil.rmtree("OxoG-Dockstore-Tools")
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
