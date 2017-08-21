@@ -79,7 +79,7 @@ try:
             if os.path.isfile(os.path.join(donor, vcfObjID)) and os.path.isfile(os.path.join(donor, vcfKey)) == False:
                 os.rename(os.path.join(donor, vcfObjID), os.path.join(donor, vcfKey))
 
-    #only for test uses
+    #use for fast testing
     # open(donor + '/' + str(list(normal_id.keys())[0]), 'a').close()
     #
     # for t in tumours:
@@ -96,6 +96,13 @@ try:
 
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
+
+    os.remove("public_full9.tar.gz")
+
+    if os.path.isdir("ref")::
+        shutil.rmtree("ref")
+
+    shutil.rmtree(donor)
     sys.exit(1)  # task failed
 
 
