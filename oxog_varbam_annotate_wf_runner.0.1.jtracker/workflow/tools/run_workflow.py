@@ -94,8 +94,7 @@ except Exception, e:
 task_stop = int(time.time())
 
 output_json = {
-    'file': os.path.join(cwd, file_name)
-
+    'run_workflow_dir': cwd
 }
 
 save_output_json(output_json)

@@ -79,6 +79,7 @@ workflow:
     cleanup:
       tool: cleanup
       input:
+        run_workflow_dir: run_workflow_dir@run_workflow
         ref_path: ref_path@setup
         dir_path: dir_path@setup
         donor: donor
@@ -137,10 +138,15 @@ tools:
         type: string
       minibamName:
         type: string
+    output:
+      run_workflow_dir:
+        type: string
 
   cleanup:
     command: cleanup.py
     input:
+      run_workflow_dir:
+        type: string
       dir_path:
         type: string
       ref_path:

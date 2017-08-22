@@ -12,6 +12,7 @@ from utils import get_task_dict, save_output_json
 task_dict = get_task_dict(sys.argv[1])
 cwd = os.getcwd()
 
+run_workflow_dir = task_dict.get('input').get('run_workflow_dir')
 ref_path = task_dict.get('input').get('ref_path')
 dir_path = task_dict.get('input').get('dir_path')
 donor = task_dict.get('input').get('donor')
