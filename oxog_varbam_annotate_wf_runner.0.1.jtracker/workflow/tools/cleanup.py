@@ -20,11 +20,9 @@ donor = task_dict.get('input').get('donor')
 task_start = int(time.time())
 
 try:
-    if os.path.isdir(ref_path):
-        shutil.rmtree(ref_path)
-
+    shutil.rmtree(ref_path)
     shutil.rmtree(dir_path)
-    shutil.rmtree("OxoG-Dockstore-Tools")
+    shutil.rmtree(os.path.join(run_workflow_dir, "OxoG-Dockstore-Tools"))
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
     sys.exit(1)  # task failed

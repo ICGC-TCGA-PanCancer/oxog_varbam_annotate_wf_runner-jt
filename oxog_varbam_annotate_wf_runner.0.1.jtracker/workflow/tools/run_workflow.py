@@ -65,8 +65,8 @@ try:
         "class": "Directory"
     }
     json_input["refDataDir"] = {
-        "path": ref_path + "/public",
-        "location": ref_path + "/public",
+        "path": ref_path,
+        "location": ref_path,
         "class": "Directory"
     }
 
