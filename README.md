@@ -6,5 +6,5 @@ This Jtracker workflow was made to be able to automate the setup and the running
 
 To run: 
 * install cwltool 1.0.20170817131858
-* run "docker pull quay.io/pancancer/pcawg-oxog-tools" 
+* run `docker pull quay.io/pancancer/pcawg-oxog-tools`
 
