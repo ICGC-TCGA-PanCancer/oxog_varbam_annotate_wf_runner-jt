@@ -1,0 +1,18 @@
+{
+  "task": "cleanup", 
+  "depends_on": [
+    "completed@run_workflow", 
+    "completed@setup"
+  ], 
+  "tool": "cleanup", 
+  "command": "cleanup.py", 
+  "input": {
+    "donor": "DO52739", 
+    "ref_path": "/home/ubuntu/jtracker/worker.1503423514.50fdc734.host.c7a55dda.10.0.0.2/job.run2/task.setup/ref", 
+    "run_workflow_dir": "/home/ubuntu/jtracker/worker.1503423514.50fdc734.host.c7a55dda.10.0.0.2/job.run2/task.run_workflow", 
+    "dir_path": "/home/ubuntu/jtracker/worker.1503423514.50fdc734.host.c7a55dda.10.0.0.2/job.run2/task.setup/DO52739"
+  }, 
+  "runtime": {
+    "docker": null
+  }
+}
