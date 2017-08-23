@@ -32,7 +32,6 @@ except Exception, e:
 task_stop = int(time.time())
 
 output_json = {
-    '':,
     }
 }
 

@@ -44,6 +44,7 @@ def report(block_no, block_size, file_size):
 try:
 
     #ref file download
+    #replace with different method, this will produce out of memory error on machines with less RAM
     if os.path.isfile("public_full9.tar.gz") == False:
         #current_dir = os.path.dirname(os.path.realpath(__file__))
         #target_dir = os.path.sep.join(current_dir.split(os.path.sep)[:-2])
