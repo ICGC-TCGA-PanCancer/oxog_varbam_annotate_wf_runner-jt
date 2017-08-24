@@ -1,0 +1,18 @@
+{
+  "task": "cleanup", 
+  "depends_on": [
+    "completed@run_workflow", 
+    "completed@setup"
+  ], 
+  "tool": "cleanup", 
+  "command": "cleanup.py", 
+  "input": {
+    "donor": "DO52739", 
+    "run_workflow_dir": "{{run_workflow_dir@run_workflow}}", 
+    "dir_path": "{{dir_path@setup}}", 
+    "ref_path": "{{ref_path@setup}}"
+  }, 
+  "runtime": {
+    "docker": null
+  }
+}
