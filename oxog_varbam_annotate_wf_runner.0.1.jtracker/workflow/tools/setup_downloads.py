@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import shutil
 import urllib
 import os
 import sys
@@ -98,13 +99,14 @@ try:
 
 except Exception, e:
     with open('jt.log', 'w') as f: f.write(str(e))
-
-    os.remove("public_full9.tar.gz")
+    if os.path.isfile("public_full9.tar.gz"):
+        os.remove("public_full9.tar.gz")
 
     if os.path.isdir("ref"):
         shutil.rmtree("ref")
 
-    shutil.rmtree(donor)
+    if os.path.isdir(donor):
+        shutil.rmtree(donor)
     sys.exit(1)  # task failed
 
 
