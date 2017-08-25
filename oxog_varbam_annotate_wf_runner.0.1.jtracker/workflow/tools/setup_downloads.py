@@ -33,15 +33,6 @@ refdone = False
 
 task_start = int(time.time())
 
-def report(block_no, block_size, file_size):
-    global prog
-    prog += block_size
-    rate = (prog * 100)//file_size
-    print(subprocess.check_output(["echo", "Downloaded %i bytes of %i. Progress : %i%%" % (prog, file_size, rate)]))
-    #sys.stdout.flush()
-    if rate >= 100:
-        refdone = True
-
 try:
 
     #ref file download
@@ -51,7 +42,7 @@ try:
         #target_dir = os.path.sep.join(current_dir.split(os.path.sep)[:-2])
         os.mkdir("ref")
         prog = 0
-        urllib.urlretrieve(refUrl,'public_full9.tar.gz', reporthook=report)
+        print(subprocess.check_output(['wget', '-O', 'public_full9.tar.gz', refUrl])
         print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', 'ref']))
         os.remove("public_full9.tar.gz")
 
