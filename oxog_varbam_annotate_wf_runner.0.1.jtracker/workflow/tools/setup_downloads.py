@@ -40,7 +40,7 @@ try:
         #current_dir = os.path.dirname(os.path.realpath(__file__)) #for storing ref data on worker. not complete yet
         #target_dir = os.path.sep.join(current_dir.split(os.path.sep)[:-2])
         os.mkdir("ref")
-        print(subprocess.check_output(['wget', '-O', 'public_full9.tar.gz', refUrl])
+        print(subprocess.check_output(['wget', '-O', 'public_full9.tar.gz', refUrl]))
         print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', 'ref']))
         os.remove("public_full9.tar.gz")
 
