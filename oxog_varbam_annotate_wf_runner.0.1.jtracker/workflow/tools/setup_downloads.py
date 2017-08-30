@@ -36,12 +36,10 @@ task_start = int(time.time())
 try:
 
     #ref file download
-    #replace with different method, this will produce out of memory error on machines with less RAM
     if os.path.isfile("public_full9.tar.gz") == False:
-        #current_dir = os.path.dirname(os.path.realpath(__file__))
+        #current_dir = os.path.dirname(os.path.realpath(__file__)) #for storing ref data on worker. not complete yet
         #target_dir = os.path.sep.join(current_dir.split(os.path.sep)[:-2])
         os.mkdir("ref")
-        prog = 0
         print(subprocess.check_output(['wget', '-O', 'public_full9.tar.gz', refUrl])
         print(subprocess.check_output(['tar', 'xvzf', 'public_full9.tar.gz', '--directory', 'ref']))
         os.remove("public_full9.tar.gz")
@@ -54,14 +52,17 @@ try:
     dirpath = os.path.abspath(donor)
     #normalBam
     r = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', str(list(normal_id.values())[0]), '--output-dir', donor])
+    #horrible way to try to get keys of a dict but others did not work. takes all keys, converts to list and take first element
     out_bam = str(list(normal_id.keys())[0])
 
-    #tumour
+    #Parse through tumours
     for t in tumours:
+        #probably a better way to do this
         bamObjID = str(list(t["bamFileName"].values())[0])
         bamNames = str(list(t["bamFileName"].keys())[0])
         out_tumour.append(bamNames)
         f = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', bamObjID, '--output-dir', donor])
+        # in case file downloaded has a bad name
         if os.path.isfile(os.path.join(donor, bamObjID)) and os.path.isfile(os.path.join(donor, bamNames)) == False:
             os.rename(os.path.join(donor, bamObjID), os.path.join(donor, bamNames))
 
@@ -70,6 +71,7 @@ try:
             vcfObjID = t['associatedVcfs'].get(vcfKey)
             out_vcf.append(vcfObjID)
             k = subprocess.check_output(['icgc-storage-client', '--profile', 'collab', 'download', '--object-id', vcfObjID, '--output-dir', donor])
+            # rename in case file name bad
             if os.path.isfile(os.path.join(donor, vcfObjID)) and os.path.isfile(os.path.join(donor, vcfKey)) == False:
                 os.rename(os.path.join(donor, vcfObjID), os.path.join(donor, vcfKey))
 
@@ -89,6 +91,7 @@ try:
     #         open(donor + '/' + (str(i)), 'a').close()
 
 except Exception, e:
+    #if failure I dont want data crowding the job and worker
     with open('jt.log', 'w') as f: f.write(str(e))
     if os.path.isfile("public_full9.tar.gz"):
         os.remove("public_full9.tar.gz")

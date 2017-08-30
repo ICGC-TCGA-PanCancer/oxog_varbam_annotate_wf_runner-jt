@@ -27,6 +27,7 @@ minibamName = task_dict.get('input').get('minibamName')
 task_start = int(time.time())
 
 try:
+    #convert jtracker json to oxog json
     json_input= {}
     json_input["vcfdir"] = {
         "path": dir_path,
@@ -70,11 +71,12 @@ try:
         "class": "Directory"
     }
 
-
+    # dump as json file
     with open('run.json', 'w') as rj:
         json.dump(json_input, rj, indent=4)
     rj.close()
 
+    #clone oxog and call using cwltool. change this to dockstore as soon as its available
     cwd = os.getcwd()
     print(subprocess.check_output(['git', 'clone', 'https://github.com/ICGC-TCGA-PanCancer/OxoG-Dockstore-Tools.git']))
     os.chdir(os.path.join(cwd,'OxoG-Dockstore-Tools'))

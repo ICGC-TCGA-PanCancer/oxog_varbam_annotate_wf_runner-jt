@@ -20,6 +20,7 @@ donor = task_dict.get('input').get('donor')
 task_start = int(time.time())
 
 try:
+    # remove data to reduce clutter
     shutil.rmtree(dir_path)
     shutil.rmtree(os.path.join(run_workflow_dir, "OxoG-Dockstore-Tools"))
 except Exception, e:
